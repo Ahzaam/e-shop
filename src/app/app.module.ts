@@ -8,12 +8,18 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { StockComponent } from './Components/stock/stock.component';
+import { ProductsCarouselComponent } from './Components/products-carousel/products-carousel.component';
+import { ProductsGridComponent } from './Components/products-grid/products-grid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    StockComponent,
+    ProductsCarouselComponent,
+    ProductsGridComponent
   ],
   imports: [
     BrowserModule,
