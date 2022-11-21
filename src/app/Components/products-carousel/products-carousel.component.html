@@ -1,12 +1,6 @@
 <div class="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">
   <div class="w-full relative flex items-center justify-center">
-    <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-      <div
-        #slider
-        id="slider"
-        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
-      >
-        <button
+    <button
           aria-label="slide backward"
           (click)="goNext(slider)"
           class="absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
@@ -28,6 +22,13 @@
             />
           </svg>
         </button>
+    <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+      <div
+        #slider
+        id="slider"
+        class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+      >
+        
         <div class="flex flex-shrink-0 relative w-full sm:w-auto">
           <img
             src="https://i.ibb.co/fDngH9G/carosel-1.png"
