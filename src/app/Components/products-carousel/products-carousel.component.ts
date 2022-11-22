@@ -18,7 +18,6 @@ export class ProductsCarouselComponent implements OnInit {
   }
 
   goNext(slider: any) {
-    console.log(slider);
     this.defaultTransform = this.defaultTransform - 398;
 
     if (Math.abs(this.defaultTransform) >= slider.scrollWidth / 1.7)

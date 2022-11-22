@@ -1,0 +1,7 @@
+.ahzam {
+  display: none;
+}
+
+#avatarButton:hover .ahzam {
+  display: block;
+}
