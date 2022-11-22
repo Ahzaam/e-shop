@@ -45,7 +45,16 @@ export class AuthenticateService {
     this.fireAuth.signOut();
   }
   userData() {
-    return this.user;
+    return new Promise((resolve) => {
+      if (this.user) {
+        return this.user;
+      } else {
+        this.isUserAvailable().subscribe((user) => {
+          this.user = user;
+          resolve(user);
+        });
+      }
+    });
   }
   isUserAvailable() {
     return this.fireAuth.authState;
