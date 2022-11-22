@@ -6,11 +6,12 @@ import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-
+import { User } from 'firebase/auth';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticateService {
+  public user: User | any;
   constructor(private fireAuth: AngularFireAuth) {}
 
   // Sign in with email/password
@@ -31,7 +32,9 @@ export class AuthenticateService {
     return this.fireAuth
       .signInWithPopup(provider)
       .then((result) => {
-        console.log('You have been successfully logged in!');
+        this.isUserAvailable().subscribe((user) => {
+          this.user = user;
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -41,7 +44,9 @@ export class AuthenticateService {
   signOut() {
     this.fireAuth.signOut();
   }
-
+  userData() {
+    return this.user;
+  }
   isUserAvailable() {
     return this.fireAuth.authState;
   }

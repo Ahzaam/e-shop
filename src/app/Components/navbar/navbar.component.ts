@@ -13,13 +13,12 @@ export class NavbarComponent implements OnInit {
   isAuth = false;
   user: any;
   load = true;
-  constructor(public auth: AuthenticateService, private db:DatabaseService) {}
+  constructor(public auth: AuthenticateService, private db: DatabaseService) {}
 
   ngOnInit(): void {
     this.db.getProduct().then((data) => {
-      console.log(data)
-    })
-
+      console.log(data);
+    });
 
     this.auth.isUserAvailable().subscribe((user) => {
       this.load = false;

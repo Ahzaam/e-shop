@@ -12,6 +12,9 @@ import { StockComponent } from './Components/stock/stock.component';
 import { ProductsCarouselComponent } from './Components/products-carousel/products-carousel.component';
 import { ProductsGridComponent } from './Components/products-grid/products-grid.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AuthenticateComponent } from './Components/authenticate/authenticate.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     StockComponent,
     ProductsCarouselComponent,
     ProductsGridComponent,
+    AuthenticateComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    ReactiveFormsModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
