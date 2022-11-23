@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { DatabaseService } from 'src/app/Service/database.service';
 
@@ -13,15 +14,17 @@ export class NavbarComponent implements OnInit {
   isAuth = false;
   user: any;
   load = true;
-
   data: any;
   constructor(public auth: AuthenticateService, private db: DatabaseService) {}
 
   ngOnInit(): void {
-    this.db.getProduct().then((data) => {
-      console.log(data);
+    this.db.getProduct.subscribe((data) => {
       this.data = data;
     });
+    // this.db.getProduct().then((data) => {
+    //   console.log(data);
+    //   this.data = data;
+    // });
 
     this.auth.isUserAvailable().subscribe((user) => {
       this.load = false;

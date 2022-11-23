@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,14 +26,10 @@ export class DatabaseService {
 
   //   })
   // }
-  getProduct() {
-    return new Promise((resolve) => {
-      this.firestore
-        .collection(DatabaseService.Product)
-        .snapshotChanges()
-        .subscribe((data) => {
-          resolve(data);
-        });
+  getProduct = new Observable(() => {
+    this.firestore.collection(DatabaseService.Product).ref.onSnapshot((doc) => {
+      console.log(doc.docs.map((data) => data.data()));
+      return doc.docs.map((data) => data.data());
     });
-  }
+  });
 }
