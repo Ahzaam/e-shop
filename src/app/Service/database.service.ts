@@ -44,7 +44,7 @@ export class DatabaseService {
     );
   }
 
-  docReturn(fun: AngularFirestoreDocument<unknown>) {
+  private docReturn(fun: AngularFirestoreDocument<unknown>) {
     return new Promise((resolve) => {
       fun.get().subscribe((data) => {
         resolve(data.data());
