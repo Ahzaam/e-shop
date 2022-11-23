@@ -19,6 +19,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.db.getProduct.subscribe((data) => {
+      console.log('fkjehfiqwifgqiwugfuq3g4')
+      console.log(data)
       this.data = data;
     });
     // this.db.getProduct().then((data) => {

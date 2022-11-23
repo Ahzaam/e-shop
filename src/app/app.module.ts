@@ -16,6 +16,8 @@ import { AuthenticateComponent } from './Components/authenticate/authenticate.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
     ProductsGridComponent,
     AuthenticateComponent,
     UserProfileComponent,
+    
   ],
   imports: [
     BrowserModule,
