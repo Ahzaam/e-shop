@@ -30,7 +30,6 @@ export class DatabaseService {
       this.firestore
         .collection(DatabaseService.Product)
         .snapshotChanges()
-
         .subscribe((data) => {
           resolve(data);
         });
