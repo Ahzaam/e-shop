@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { DatabaseService } from 'src/app/Service/database.service';
-import {MatDialog }
+import { AddProductComponent } from '../dialog/add-product/add-product.component';
 
 @Component({
   selector: 'app-navbar',
@@ -16,19 +17,13 @@ export class NavbarComponent implements OnInit {
   user: any;
   load = true;
   data: any;
-  constructor(public auth: AuthenticateService, private db: DatabaseService, private dialog:MatDialog) {}
+  constructor(
+    public auth: AuthenticateService,
+    private db: DatabaseService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.db.getProduct.subscribe((data) => {
-      console.log('fkjehfiqwifgqiwugfuq3g4')
-      console.log(data)
-      this.data = data;
-    });
-    // this.db.getProduct().then((data) => {
-    //   console.log(data);
-    //   this.data = data;
-    // });
-
     this.auth.isUserAvailable().subscribe((user) => {
       this.load = false;
       if (user) {
@@ -40,7 +35,9 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  addProduct(){
-    
+  addProduct() {
+    this.dialog.open(AddProductComponent, {
+      maxHeight: '90vh',
+    });
   }
 }

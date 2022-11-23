@@ -54,7 +54,7 @@
         </li>
         <li class="pt-2">
           <a
-            routerLink="#"
+            (click)="addProduct()"
             class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
             >Pricing</a
           >
@@ -98,7 +98,7 @@
                 data-dropdown-placement="bottom-start"
                 class="w-10 h-10 rounded-full userDropdown cursor-pointer g"
                 [src]="user.photoURL"
-                alt="User dropdown"
+                alt="User "
               />
             </ng-template>
             <ng-template #login>

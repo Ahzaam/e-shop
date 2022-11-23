@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 @Injectable({
@@ -7,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class DatabaseService {
   private static readonly Product = 'Product';
+
   constructor(private firestore: AngularFirestore) {}
 
   getUserData(userId: string) {
@@ -26,10 +30,25 @@ export class DatabaseService {
 
   //   })
   // }
-  getProduct = new Observable(() => {
-    this.firestore.collection(DatabaseService.Product).ref.onSnapshot((doc) => {
-      console.log(doc.docs.map((data) => data.data()));
-      return doc.docs.map((data) => data.data());
+
+  getProduct() {
+    return this.firestore
+      .collection(DatabaseService.Product)
+      .snapshotChanges()
+      .pipe(map((responce) => responce.map((data) => data.payload.doc.data())));
+  }
+
+  getAllProduct() {
+    return this.docReturn(
+      this.firestore.collection('Product').doc('3BPVYpNKOWpsgimAUy2X')
+    );
+  }
+
+  docReturn(fun: AngularFirestoreDocument<unknown>) {
+    return new Promise((resolve) => {
+      fun.get().subscribe((data) => {
+        resolve(data.data());
+      });
     });
-  });
+  }
 }

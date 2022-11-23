@@ -15,10 +15,8 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AuthenticateComponent } from './Components/authenticate/authenticate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
-
 
 @NgModule({
   declarations: [
@@ -30,7 +28,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     ProductsGridComponent,
     AuthenticateComponent,
     UserProfileComponent,
-    
   ],
   imports: [
     BrowserModule,
