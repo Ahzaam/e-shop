@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { DatabaseService } from 'src/app/Service/database.service';
+import {MatDialog }
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   user: any;
   load = true;
   data: any;
-  constructor(public auth: AuthenticateService, private db: DatabaseService) {}
+  constructor(public auth: AuthenticateService, private db: DatabaseService, private dialog:MatDialog) {}
 
   ngOnInit(): void {
     this.db.getProduct.subscribe((data) => {
@@ -37,5 +38,9 @@ export class NavbarComponent implements OnInit {
         this.isAuth = false;
       }
     });
+  }
+
+  addProduct(){
+    
   }
 }

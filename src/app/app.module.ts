@@ -15,7 +15,9 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AuthenticateComponent } from './Components/authenticate/authenticate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
