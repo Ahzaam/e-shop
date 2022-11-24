@@ -18,6 +18,9 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShopComponent } from './Components/shop/shop.component';
+import { ViewProductComponent } from './Components/view-product/view-product.component';
+import { HomeProductsComponent } from './Components/home-products/home-products.component';
+import { TeamComponent } from './Components/team/team.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { ShopComponent } from './Components/shop/shop.component';
     AuthenticateComponent,
     UserProfileComponent,
     ShopComponent,
+    ViewProductComponent,
+    HomeProductsComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule,

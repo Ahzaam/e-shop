@@ -1,138 +1,378 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
-<div class="bg-white">
-  <div
-    class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
-  >
-    <h2 class="sr-only">Products</h2>
-
-    <div
-      class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
-    >
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Earthen Bottle</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
-      </a>
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
-            alt="Person using a pen to cross a task off a productivity paper card."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Focus Paper Refill</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$99</p>
-      </a>
-
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg"
-            alt="Hand holding black machined steel mechanical pencil with brass tip and top."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Machined Mechanical Pencil</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-      </a>
-
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Earthen Bottle</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
-      </a>
-
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Earthen Bottle</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
-      </a>
-
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg"
-            alt="Olive drab green insulated bottle with flared screw lid and flat top."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Nomad Tumbler</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-      </a>
-
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
-            alt="Person using a pen to cross a task off a productivity paper card."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Focus Paper Refill</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$89</p>
-      </a>
-
-      <a href="#" class="group">
-        <div
-          class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
-        >
-          <img
-            src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg"
-            alt="Hand holding black machined steel mechanical pencil with brass tip and top."
-            class="h-full w-full object-cover object-center group-hover:opacity-75"
-          />
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Machined Mechanical Pencil</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-      </a>
-
-      <!-- More products... -->
-    </div>
+<div
+  class="w-full bg-no-repeat bg-right bg-gray-100 py-16"
+  style="background-image: url(/assets/images/tech-bg.png)"
+>
+  <div class="text-center p-10">
+    <h1 class="font-bold text-4xl mb-4">Responsive Product card grid</h1>
+    <h1 class="text-3xl">Tailwind CSS</h1>
   </div>
+
+  <!-- ✅ Grid Section - Starts Here 👇 -->
+  <section
+    class="w-fit grid grid-cols-2 lg:grid-cols-4 md:grid-cols-2 justify-items-center sm:mx-3 md:mx-auto justify-center gap-2 md:gap-y-20 md:gap-x-14 mt-10 mb-5"
+  >
+    <!--   ✅ Product card 1 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 1 - Ends Here  -->
+
+    <!--   ✅ Product card 2 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 2- Ends Here  -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   ✅ Product card 3 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 3 - Ends Here  -->
+
+    <!--   ✅ Product card 4 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 4 - Ends Here  -->
+
+    <!--   ✅ Product card 5 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1649261191624-ca9f79ca3fc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 5 - Ends Here  -->
+
+    <!--   ✅ Product card 6 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1649261191606-cb2496e97eee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 6 - Ends Here  -->
+
+    <!--   ✅ Product card 4 - Starts Here 👇 -->
+    <div
+      class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <a href="#">
+        <img
+          src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Product"
+          class="h-80 w-full object-cover rounded-t-xl"
+        />
+        <div class="px-4 py-3 w-full">
+          <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
+          <p class="text-lg font-bold text-black truncate block capitalize">
+            Product Name
+          </p>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-black cursor-auto my-3">
+              $149
+            </p>
+            <del>
+              <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+            </del>
+            <div class="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-bag-plus"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                />
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!--   🛑 Product card 4 - Ends Here  -->
+  </section>
 </div>
