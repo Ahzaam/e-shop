@@ -94,6 +94,16 @@
             "firebaseProject": "e-shop-1626e",
             "firebaseHostingSite": "e-shop-1626e"
           }
+        },
+        "deploy:prod": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "e-shop:build:production",
+            "firebaseProject": "online-shoppings",
+            "firebaseHostingSite": "online-shoppings"
+          }
         }
       }
     }
