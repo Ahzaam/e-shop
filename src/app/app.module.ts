@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShopComponent } from './Components/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductsGridComponent,
     AuthenticateComponent,
     UserProfileComponent,
+    ShopComponent,
   ],
   imports: [
     BrowserModule,
