@@ -51,4 +51,10 @@ export class DatabaseService {
       });
     });
   }
+
+  private colReturn(fun: any) {
+    return new Promise((resolve) => {
+      fun.get().subscribe(() => {});
+    });
+  }
 }
