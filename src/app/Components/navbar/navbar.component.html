@@ -54,18 +54,20 @@
         </li>
         <li class="pt-2">
           <a
-            routerLink="/shop"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-            >Shop</a
-          >
-        </li>
-        <li class="pt-2">
-          <a
             routerLink="/product"
             class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
             >Product</a
           >
         </li>
+
+        <li class="pt-2">
+          <a
+            routerLink="/shop"
+            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            >Shop</a
+          >
+        </li>
+
         <li class="relative">
           <ng-template [ngIf]="load" [ngIfElse]="loded">
             <div role="status">
