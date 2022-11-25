@@ -22,6 +22,7 @@ import { ViewProductComponent } from './Components/view-product/view-product.com
 import { HomeProductsComponent } from './Components/home-products/home-products.component';
 import { TeamComponent } from './Components/team/team.component';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AlertComponent } from './Components/Dialog/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     ViewProductComponent,
     HomeProductsComponent,
     TeamComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
