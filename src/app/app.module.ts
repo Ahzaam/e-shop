@@ -21,6 +21,7 @@ import { ShopComponent } from './Components/shop/shop.component';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { HomeProductsComponent } from './Components/home-products/home-products.component';
 import { TeamComponent } from './Components/team/team.component';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { TeamComponent } from './Components/team/team.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    provideAuth(() => getAuth()),
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
