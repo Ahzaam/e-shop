@@ -8,7 +8,7 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 
 const routes: Routes = [
-  { path: 'shop', component: ShopComponent },
+  { path: 'shop', component: ShopComponent, title: 'Shop' },
   { path: '', component: HomeComponent },
   { path: 'auth', component: AuthenticateComponent },
   { path: 'profile', component: UserProfileComponent },
