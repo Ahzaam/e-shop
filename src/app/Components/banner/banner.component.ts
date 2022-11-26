@@ -28,7 +28,9 @@ export class BannerComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => this.next(), 5000);
+  }
 
   next() {
     if (this.sliderpos < this.banners.length - 1) {
