@@ -1,8 +1,13 @@
 <div class="w-full ml-0">
-  <section class="header relative items-center flex h-screen max-h-860-px">
+  <app-banner></app-banner>
+
+  <section
+    class="header container mx-auto shadow-md relative items-center flex md:h-1/2 max-h-860-px overflow-hidden"
+    style="min-height: 700px"
+  >
     <div class="container mx-auto items-center flex flex-wrap">
       <div
-        class="w-full md:w-8/12 lg:w-6/12 pb-16 xl:w-6/12 px-4 backdrop-blur-md h-fit rounded-lg bg-white/30 shadow-lg"
+        class="w-full md:ml-10 md:w-8/12 lg:w-6/12 pb-16 xl:w-6/12 px-4 backdrop-blur-md h-fit rounded-lg bg-white/30 shadow-lg"
       >
         <div class="pt-32 sm:pt-0">
           <h2 class="font-light text-4xl text-gray-600">
@@ -69,7 +74,7 @@
 
     <img
       src="/assets/images/pattern.png"
-      class="absolute top-0 b-auto right-0 pt-16 sm:w-1/2 -mt-48 sm:mt-0 w-10/12 max-h-860px -z-10"
+      class="absolute top-0 b-auto right-0 pt-16 sm:w-1/2 h-auto w-full -mt-48 sm:mt-0 max-h-860px -z-10"
       alt="pattern"
     />
     <img
@@ -79,7 +84,7 @@
     />
   </section>
 
-  <div class="container mx-auto py-9 md:py-12 px-4 md:px-6">
+  <div class="container mx-auto py-9 md:py-12 px-4 md:px-6 w-full">
     <div
       class="flex items-strech justify-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8"
     >

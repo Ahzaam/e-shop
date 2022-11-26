@@ -23,6 +23,7 @@ import { HomeProductsComponent } from './Components/home-products/home-products.
 import { TeamComponent } from './Components/team/team.component';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AlertComponent } from './Components/Dialog/alert/alert.component';
+import { BannerComponent } from './Components/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AlertComponent } from './Components/Dialog/alert/alert.component';
     HomeProductsComponent,
     TeamComponent,
     AlertComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
