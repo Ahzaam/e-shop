@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class BannerComponent implements OnInit {
   banners = [
     {
+      image: 'https://mdbcdn.b-cdn.net/img/new/slides/043.webp',
+      data: 'nuy everything',
+    },
+    {
       image: 'https://mdbcdn.b-cdn.net/img/new/slides/042.webp',
       data: 'howa re you',
     },
