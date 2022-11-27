@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticateComponent } from './Components/authenticate/authenticate.component';
+import { CreateShopComponent } from './Components/create-shop/create-shop.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ShopComponent } from './Components/shop/shop.component';
 import { TeamComponent } from './Components/team/team.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
   { path: 'team', component: TeamComponent },
   { path: 'product', component: ViewProductComponent },
+  { path: 'shop/new', component: CreateShopComponent },
 ];
 
 @NgModule({

@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { DatabaseService } from 'src/app/Service/database.service';
-import { AddProductComponent } from '../dialog/add-product/add-product.component';
 
 @Component({
   selector: 'app-navbar',
@@ -32,12 +31,6 @@ export class NavbarComponent implements OnInit {
       } else {
         this.isAuth = false;
       }
-    });
-  }
-
-  addProduct() {
-    this.dialog.open(AddProductComponent, {
-      maxHeight: '90vh',
     });
   }
 }

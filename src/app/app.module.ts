@@ -21,9 +21,13 @@ import { ShopComponent } from './Components/shop/shop.component';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { HomeProductsComponent } from './Components/home-products/home-products.component';
 import { TeamComponent } from './Components/team/team.component';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { AlertComponent } from './Components/Dialog/alert/alert.component';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
 import { BannerComponent } from './Components/banner/banner.component';
+import { CreateShopComponent } from './Components/create-shop/create-shop.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +43,9 @@ import { BannerComponent } from './Components/banner/banner.component';
     ViewProductComponent,
     HomeProductsComponent,
     TeamComponent,
-    AlertComponent,
     BannerComponent,
+    CreateShopComponent,
+    ImageCropComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,8 @@ import { BannerComponent } from './Components/banner/banner.component';
     BrowserAnimationsModule,
     MatDialogModule,
     provideAuth(() => getAuth()),
+    MatStepperModule,
+    ImageCropperModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
