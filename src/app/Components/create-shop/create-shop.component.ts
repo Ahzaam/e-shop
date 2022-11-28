@@ -115,6 +115,11 @@ export class CreateShopComponent implements OnInit {
    
    * after calling the saveShop() function inside check the firestore whether the data has been saved
 
+   * Just look those function in StorageService and DatabaseService and get a rough idea about it
+     it will help you in future of this project, 
+     if you understand the function just add a doc string at the top of the fuction by typing inside same like in this comment
+     
+
    * If you have any kind of a problem feel free to contact me 👍👍👍
 
 
