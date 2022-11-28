@@ -58,6 +58,7 @@ import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
     provideAuth(() => getAuth()),
     MatStepperModule,
     ImageCropperModule,
+    FormsModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],

@@ -21,14 +21,16 @@ export class StorageService {
 
   uploadFile(
     fileUpload: { path: any; file: any; name: any },
-    progress: { percentage: number }
+    upload: { percentage: number; downloadURL: string }
   ) {
     this.uploadTask = this.storage.upload(fileUpload.path, fileUpload.file);
 
     this.uploadTask?.percentageChanges().subscribe((percentage) => {
-      progress.percentage = percentage as number;
-      console.log(percentage);
+      upload.percentage = percentage as number;
     });
+    this.uploadTask.task.snapshot.ref
+      .getDownloadURL()
+      .then((downloadURL) => (upload.downloadURL = downloadURL));
   }
 
   public cancelUploadTask() {

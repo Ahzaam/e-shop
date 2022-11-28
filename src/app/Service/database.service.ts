@@ -5,11 +5,13 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Shop } from '../Model/shop';
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
-  private static readonly Product = 'Product';
+  private static readonly Product = 'Products';
+  private static readonly Shops = 'Shops';
 
   constructor(private firestore: AngularFirestore) {}
 
@@ -25,6 +27,11 @@ export class DatabaseService {
     });
   }
 
+  generateDocId() {
+    /** Generates a document id for firestore document */
+    return this.firestore.createId();
+  }
+
   // getProduct(){
   //   return new Promise((resolve ) => {
 
@@ -32,6 +39,8 @@ export class DatabaseService {
   // }
 
   getProduct() {
+    /**
+     * Snapshots the products */
     return this.firestore
       .collection(DatabaseService.Product)
       .snapshotChanges()
@@ -56,5 +65,9 @@ export class DatabaseService {
     return new Promise((resolve) => {
       fun.get().subscribe(() => {});
     });
+  }
+
+  saveShop(shop: Shop) {
+    this.firestore.collection(DatabaseService.Shops).doc(shop.docId);
   }
 }

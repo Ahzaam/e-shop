@@ -44,14 +44,16 @@
               class="block mb-2 text-sm font-medium text-gray-900"
               >Shop Name</label
             >
+
             <input
               type="text"
               name="shopname"
               id="shopname"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="Type product name"
-              required=""
+              [(ngModel)]="shop.name"
             />
+            <!-- ❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️ you can use same like Line no 54-->
           </div>
           <div class="">
             <label
@@ -200,7 +202,7 @@
         <div class="w-full bg-gray-200 rounded-full h-2.5">
           <div
             class="bg-blue-600 h-2.5 rounded-full"
-            [ngStyle]="{ width: progress.percentage + '%' }"
+            [ngStyle]="{ width: upload.percentage + '%' }"
           ></div>
         </div>
         <button

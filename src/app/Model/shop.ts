@@ -1,8 +1,8 @@
 export interface Shop {
   joined: number;
   bannerImg: string;
-  openingTime: number;
-  closingTime: number;
+  openingTime: string;
+  closingTime: string;
   location: [string, string];
   logo: string;
   name: string;
@@ -14,4 +14,5 @@ export interface Shop {
   address: string;
   city: string;
   zip: number;
+  docId: string;
 }
