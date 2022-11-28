@@ -1,6 +1,5 @@
 import { enableProdMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -22,13 +21,14 @@ import { ViewProductComponent } from './Components/view-product/view-product.com
 import { HomeProductsComponent } from './Components/home-products/home-products.component';
 import { TeamComponent } from './Components/team/team.component';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-
 import { BannerComponent } from './Components/banner/banner.component';
 import { CreateShopComponent } from './Components/create-shop/create-shop.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -61,8 +61,9 @@ import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component
     MatStepperModule,
     ImageCropperModule,
     FormsModule,
+    MatIconModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
