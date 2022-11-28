@@ -28,6 +28,7 @@ import { CreateShopComponent } from './Components/create-shop/create-shop.compon
 import { MatStepperModule } from '@angular/material/stepper';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
+import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
     BannerComponent,
     CreateShopComponent,
     ImageCropComponent,
+    ShopAdminComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { ShopComponent } from './Components/shop/shop.component';
 import { TeamComponent } from './Components/team/team.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
+import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
 
 const routes: Routes = [
   { path: 'shop', component: ShopComponent, title: 'Shop' },
@@ -16,10 +17,11 @@ const routes: Routes = [
   { path: 'team', component: TeamComponent },
   { path: 'product', component: ViewProductComponent },
   { path: 'shop/new', component: CreateShopComponent },
+  { path: 'admin', component: ShopAdminComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
