@@ -28,6 +28,7 @@ import { CreateShopComponent } from './Components/create-shop/create-shop.compon
 import { MatStepperModule } from '@angular/material/stepper';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
     MatStepperModule,
     ImageCropperModule,
     FormsModule,
+    MatIconModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
