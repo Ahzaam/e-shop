@@ -113,7 +113,6 @@ export class CreateShopComponent implements OnInit {
      you can generate a document ID by calling generateDocId() funtion that is inside DatabaseService
 
 
-   
    * after calling the saveShop() function inside check the firestore whether the data has been saved
 
    * Just look those function in StorageService and DatabaseService and get a rough idea about it
