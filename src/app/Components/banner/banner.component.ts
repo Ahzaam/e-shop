@@ -17,7 +17,7 @@ export class BannerComponent implements OnInit {
       data: 'howa re you',
     },
     {
-      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg',
+      image: '/assets/images/blazers.png',
       data: 'nuy everything',
     },
     {
