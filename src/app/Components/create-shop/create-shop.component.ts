@@ -95,8 +95,8 @@ export class CreateShopComponent implements OnInit {
 
    * For Category select, add values to the options 
 
-   * Implement a save function here that passes the data to saveshop 
-     function inside DatabaseService
+   * Implement a save function here that passes the data to saveshop function inside DatabaseService
+     Your fuction can be called by adding (click)="YOUR_FUNCTION_NAME" inside button element
 
    * LITTLE LOGICAL: after upload.percentage is 100, upload.downloadURL will be replaced with a URL automatically
      you need to add the URL to shop.logo. HINT: Implement a if and check whether the progress is 100 else just return
@@ -112,12 +112,13 @@ export class CreateShopComponent implements OnInit {
    * docId must must be replaced with a document ID, 
      you can generate a document ID by calling generateDocId() funtion that is inside DatabaseService
 
+
    
    * after calling the saveShop() function inside check the firestore whether the data has been saved
 
    * Just look those function in StorageService and DatabaseService and get a rough idea about it
      it will help you in future of this project, 
-     if you understand the function just add a doc string at the top of the fuction by typing inside same like in this comment
+     if you understand the function just add a comment 
      
 
    * If you have any kind of a problem feel free to contact me 👍👍👍
