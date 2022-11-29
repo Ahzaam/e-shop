@@ -59,4 +59,13 @@ export class AuthenticateService {
   isUserAvailable() {
     return this.fireAuth.authState;
   }
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') as string);
+    return user !== null &&
+      (user.emailVerified !== false ||
+        user.providerData[0].providerId === 'facebook.com')
+      ? true
+      : false;
+  }
 }

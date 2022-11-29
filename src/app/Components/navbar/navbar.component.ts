@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { DatabaseService } from 'src/app/Service/database.service';
@@ -19,7 +20,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     public auth: AuthenticateService,
     private db: DatabaseService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public router: Router
   ) {}
 
   ngOnInit(): void {

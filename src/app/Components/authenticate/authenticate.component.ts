@@ -19,13 +19,7 @@ export class AuthenticateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.authService.isUserAvailable().subscribe((user) => {
-      if (user) {
-        this.route.navigate(['/']);
-      }
-    });
-  }
+  ngOnInit(): void {}
 
   changeSign() {
     this.signin = !this.signin;

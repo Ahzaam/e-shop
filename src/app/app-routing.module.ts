@@ -8,20 +8,34 @@ import { TeamComponent } from './Components/team/team.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'shop', component: ShopComponent, title: 'Shop' },
+  {
+    path: 'shop',
+    component: ShopComponent,
+    title: 'Shop',
+    canActivate: [AuthGuard],
+  },
   { path: '', component: HomeComponent },
-  { path: 'auth', component: AuthenticateComponent },
-  { path: 'profile', component: UserProfileComponent },
+  { path: 'auth', component: AuthenticateComponent, canActivate: [!AuthGuard] },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'team', component: TeamComponent },
   { path: 'product', component: ViewProductComponent },
-  { path: 'shop/new', component: CreateShopComponent },
-  { path: 'admin', component: ShopAdminComponent },
+  {
+    path: 'shop/new',
+    component: CreateShopComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'admin', component: ShopAdminComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -2,9 +2,11 @@
   id="defaultModal"
   tabindex="-1"
   aria-hidden="true"
-  class="overflow-x-hidden mx-auto z-50 flex justify-center items-left w-full md:h-fit"
+  class="overflow-x-hidden mx-auto flex justify-center items-left w-full md:h-fit"
 >
-  <div class="relative p-4 w-full mx-auto text-left max-w-2xl h-full md:h-auto">
+  <div
+    class="relative p-4 w-full z-10 md:mb-4 md:mt-10 bg-white mx-auto text-left shadow-lg rounded-lg max-w-2xl h-full md:h-auto"
+  >
     <!-- Modal content -->
     <div class="relative p-4 rounded-lg sm:p-5">
       <!-- Modal header -->
@@ -86,9 +88,9 @@
                   name="openingtime"
                   id="openingtime"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  [(ngModel)]="shop.openingTime"
                 />
               </div>
+
               <div>
                 <input
                   type="time"
@@ -119,7 +121,6 @@
                   name="address"
                   id="address"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-
                 />
               </div>
 
@@ -231,10 +232,17 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="curve_bottom">
-  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
-  </svg>
+  <div class="curve_bottom hidden md:block -z-10">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+        class="shape-fill"
+      ></path>
+    </svg>
+  </div>
 </div>

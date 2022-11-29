@@ -8,7 +8,7 @@
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  margin-bottom: -170px;
+  margin-bottom: 0;
 }
 
 .curve_bottom svg {
@@ -19,5 +19,5 @@
 }
 
 .curve_bottom .shape-fill {
-  fill: #186DF5;
+  fill: #186df5;
 }
