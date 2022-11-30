@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonsService } from 'src/app/Service/commons.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  constructor(private bound: CommonsService) {}
 
   ngOnInit(): void {
+    this.bound.setBound('perfume');
   }
-
 }

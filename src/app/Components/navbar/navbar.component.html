@@ -1,15 +1,24 @@
-<nav class="px-2 bg-white border-gray-200 shadow-md">
+<nav
+  class="px-2 border-gray-200 shadow-md duration-700 fixed top-0 w-full z-50"
+  [ngClass]="{
+    'bg-black opacity-80': darkBound,
+    'bg-white opacity-90': !darkBound
+  }"
+>
   <div class="w-full flex flex-wrap items-center justify-between mx-auto">
     <a routerLink="/" class="flex items-center">
-      <span class="self-center text-xl font-semibold whitespace-nowrap"
+      <span
+        class="self-center text-xl font-semibold whitespace-nowrap"
+        [ngClass]="{ 'text-white ': darkBound }"
         >GLIDE Ceylon</span
       >
     </a>
     <button
       data-collapse-toggle="navbar-multi-level"
       (click)="smallnav = !smallnav"
+      [ngClass]="{ 'text-white ': darkBound }"
       type="button"
-      class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
       aria-controls="navbar-multi-level"
       aria-expanded="false"
     >
@@ -34,12 +43,13 @@
       [ngClass]="{ 'hidden ': smallnav }"
     >
       <ul
-        class="flex flex-col p-2 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"
+        [ngClass]="{ 'text-white ': darkBound }"
+        class="flex flex-col p-2 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
       >
         <li class="pt-2">
           <a
             routerLink="/"
-            class="block py-2 pl-3 pr-4 text-gray-700 bg-blue-700 rounded md:bg-transparent md:p-0"
+            class="block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0"
             [ngClass]="{ 'text-blue-700': router.isActive('/', true) }"
             aria-current="page"
             >Home</a
@@ -50,7 +60,7 @@
           <a
             routerLink="/team"
             [ngClass]="{ 'text-blue-700': router.isActive('/team', true) }"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
             >Team</a
           >
         </li>
@@ -58,7 +68,7 @@
           <a
             routerLink="/product"
             [ngClass]="{ 'text-blue-700': router.isActive('/product', true) }"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
             >Product</a
           >
         </li>
@@ -66,7 +76,7 @@
           <a
             routerLink="/shop/new"
             [ngClass]="{ 'text-blue-700': router.isActive('/shop/new', true) }"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
             >New Shop</a
           >
         </li>
@@ -75,7 +85,7 @@
           <a
             routerLink="/shop"
             [ngClass]="{ 'text-blue-700': router.isActive('/shop', true) }"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
             >Shop</a
           >
         </li>
