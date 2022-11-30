@@ -68,6 +68,9 @@ export class DatabaseService {
   }
 
   saveShop(shop: Shop) {
-    this.firestore.collection(DatabaseService.Shops).doc(shop.docId);
+    return this.firestore
+      .collection(DatabaseService.Shops)
+      .doc(shop.docId)
+      .set(shop);
   }
 }

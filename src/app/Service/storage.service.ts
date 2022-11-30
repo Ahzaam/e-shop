@@ -24,6 +24,7 @@ export class StorageService {
     upload: { percentage: number; downloadURL: string }
   ) {
     this.uploadTask = this.storage.upload(fileUpload.path, fileUpload.file);
+    // file uploaded here
 
     this.uploadTask?.percentageChanges().subscribe((percentage) => {
       upload.percentage = percentage as number;

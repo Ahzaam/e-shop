@@ -68,8 +68,8 @@
               name=""
               id=""
             >
-              <option value="">Grocery</option>
-              <option value="">Cosmetics</option>
+              <option value="grocery">Grocery</option>
+              <option value="cosmetics">Cosmetics</option>
               <option value="">Tech</option>
               <option value="">Vegetable</option>
               <option value="">Food</option>
@@ -213,6 +213,7 @@
         </div>
         <button
           type="submit"
+          (click)="saveShop()"
           class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
         >
           <!-- <svg
