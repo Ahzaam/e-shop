@@ -29,10 +29,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     window.addEventListener('scroll', () => {
-      let bound = this.getbound.getBound() + screen.height / 2;
+      let bound = this.getbound.getBound() - 500;
       if (
         window.pageYOffset > bound &&
-        window.pageYOffset < bound + screen.height * 2
+        window.pageYOffset < bound + screen.height * 3
       ) {
         this.darkBound = true;
       } else {
