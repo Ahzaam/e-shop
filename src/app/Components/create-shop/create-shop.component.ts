@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { base64ToFile } from 'ngx-image-cropper';
 import { AlertComponent } from 'src/app/Dialogs/alert/alert.component';
@@ -22,24 +23,7 @@ export class CreateShopComponent implements OnInit {
   croppedImage: any = '';
 
   // This is the shop Object you can access the data inside like shop.name
-  shop: Shop = {
-    name: '',
-    joined: 0,
-    openingTime: '',
-    closingTime: '',
-    bannerImg: '',
-    location: ['7.0578° N', '80.5730° E'],
-    logo: '',
-    paymentGateway: false,
-    quote: '',
-    rating: 0,
-    shopId: '',
-    type: '',
-    address: '',
-    city: '',
-    zip: 0,
-    docId: '',
-  };
+  shop: Shop = <Shop>{};
 
   // 🔥 Call the DatabaseService as same as storage inside constructor 👇👇👇
   // after constructing it you can use it by the name you defined
@@ -47,10 +31,29 @@ export class CreateShopComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private storage: StorageService,
-    private db: DatabaseService
-  ) {}
+    private db: DatabaseService,
+    private _formBuilder: FormBuilder
+  ) {
+    this.shop.paymentGateway = false;
+  }
 
   ngOnInit(): void {}
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  isLinear = false;
+
+  shop_types = [
+    { type: 'grocery', image: '/assets/icons/grocery.jpg' },
+    { type: 'costume', image: '/assets/icons/costume.jpg' },
+    { type: 'cosmetics', image: '/assets/icons/cosmetics.jpg' },
+    { type: 'footwear', image: '/assets/icons/footwear.jpg' },
+    { type: 'mobile', image: '/assets/icons/mobile.png' },
+    { type: 'furniture', image: '/assets/icons/furniture.jpg' },
+  ];
 
   fileChangeEvent(event: any): void {
     if (event.target.files[0].size < 4194304) {
@@ -87,6 +90,15 @@ export class CreateShopComponent implements OnInit {
         },
       });
     }
+  }
+
+  afterName(stepper: any) {
+    stepper.next();
+  }
+
+  afterType(stepper: any, type: string) {
+    this.shop.type = type;
+    stepper.next();
   }
 
   saveShop() {

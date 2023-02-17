@@ -11,7 +11,8 @@ import { User } from 'firebase/auth';
   providedIn: 'root',
 })
 export class AuthenticateService {
-  public user: User | any;
+  public g_user: User | any;
+
   constructor(private fireAuth: AngularFireAuth) {}
 
   // Sign in with email/password
@@ -33,7 +34,7 @@ export class AuthenticateService {
       .signInWithPopup(provider)
       .then((result) => {
         this.isUserAvailable().subscribe((user) => {
-          this.user = user;
+          this.g_user = user;
         });
       })
       .catch((error) => {
@@ -44,18 +45,7 @@ export class AuthenticateService {
   signOut() {
     this.fireAuth.signOut();
   }
-  userData() {
-    return new Promise((resolve) => {
-      if (this.user) {
-        return this.user;
-      } else {
-        this.isUserAvailable().subscribe((user) => {
-          this.user = user;
-          resolve(user);
-        });
-      }
-    });
-  }
+
   isUserAvailable() {
     return this.fireAuth.authState;
   }

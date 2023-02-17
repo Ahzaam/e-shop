@@ -15,3 +15,7 @@ body {
 .baby-blue-green {
   background-color: rgb(6, 252, 252);
 }
+
+.body-height{
+  min-height: 88vh;
+}

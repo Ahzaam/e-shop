@@ -1,34 +1,43 @@
-import { enableProdMode, NgModule } from '@angular/core';
+// ANGULAR CORE
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+// THIRD-PARTY MODULES
+import { ImageCropperModule } from 'ngx-image-cropper';
+
+// FIREBASE MODULES
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { HomeComponent } from './Components/home/home.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
+// MATERIAL ICON
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
+
+// COMPONENTS
 import { StockComponent } from './Components/stock/stock.component';
 import { ProductsCarouselComponent } from './Components/products-carousel/products-carousel.component';
 import { ProductsGridComponent } from './Components/products-grid/products-grid.component';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { AuthenticateComponent } from './Components/authenticate/authenticate.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserProfileComponent } from './Components/user-profile/user-profile.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ShopComponent } from './Components/shop/shop.component';
-import { ViewProductComponent } from './Components/view-product/view-product.component';
+import { HomeComponent } from './Components/home/home.component';
 import { HomeProductsComponent } from './Components/home-products/home-products.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { TeamComponent } from './Components/team/team.component';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { BannerComponent } from './Components/banner/banner.component';
+import { AuthenticateComponent } from './Components/authenticate/authenticate.component';
 import { CreateShopComponent } from './Components/create-shop/create-shop.component';
-import { MatStepperModule } from '@angular/material/stepper';
-import { ImageCropperModule } from 'ngx-image-cropper';
-import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { BannerComponent } from './Components/banner/banner.component';
+import { ViewProductComponent } from './Components/view-product/view-product.component';
+import { ShopComponent } from './Components/shop/shop.component';
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
-import { MatIconModule } from '@angular/material/icon';
-
+import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +71,9 @@ import { MatIconModule } from '@angular/material/icon';
     ImageCropperModule,
     FormsModule,
     MatIconModule,
+    MatFormFieldModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,249 +1,188 @@
-<div
-  id="defaultModal"
-  tabindex="-1"
-  aria-hidden="true"
-  class="overflow-x-hidden mx-auto flex justify-center items-left w-full md:h-fit"
->
-  <div
-    class="relative p-4 w-full z-10 md:mb-4 md:mt-10 bg-white mx-auto text-left shadow-lg rounded-lg max-w-2xl h-full md:h-auto"
-  >
-    <!-- Modal content -->
-    <div class="relative p-4 rounded-lg sm:p-5">
-      <!-- Modal header -->
-      <div
-        class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5"
-      >
-        <h3 class="text-lg font-semibold text-gray-900">
-          Tell us about your shop
-        </h3>
-        <!-- <button
-                type="button"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                data-modal-toggle="defaultModal"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+<div>
+  <style>
+    .body-height {
+      min-height: 80vh;
+    }
+  </style>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup" label="Shop Name">
+      <div class="body-height flex items-center justify-center">
+        <div class="w-full text-center mt-3">
+          <div class="w-fit mx-auto">
+            <span class="md:text-3xl text-lg"
+              >What name are you going to give to your shop?</span
+            >
+            <div class="my-10">
+              <div>
+                <input
+                  type="text"
+                  id="first_name"
+                  [(ngModel)]="shop.name"
+                  class="bg-gray-50 border w-full mx-auto outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                  placeholder="Online Shoppings"
+                  required
+                />
+              </div>
+              <div class="my-4 w-52 mx-auto">
+                <button
+                  type="submit"
+                  (click)="afterName(stepper)"
+                  class="text-white px-8 max-w-sm w-36 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="sr-only">Close modal</span>
-              </button> -->
+                  Next
+                </button>
+              </div>
+              <div class="md:max-w-lg max-w-sm mx-auto text-center">
+                <img src="/assets/images/shop2.jpg" alt="SHop" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- Modal body -->
-      <form action="#" class="sm:w-64 md:w-full">
-        <div class="grid gap-4 mb-4 sm:grid-cols-2">
-          <div class="col-span-2">
-            <label
-              for="name"
-              class="block mb-2 text-sm font-medium text-gray-900"
-              >Shop Name</label
-            >
-
-            <input
-              type="text"
-              name="shopname"
-              id="shopname"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-              placeholder="Type product name"
-              [(ngModel)]="shop.name"
-            />
-            <!-- ❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️ you can use same like Line no 54-->
-          </div>
-          <div class="">
-            <label
-              for="name"
-              class="block mb-2 text-sm font-medium text-gray-900"
-              >Category</label
-            >
-            <select
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-              name=""
-              id=""
-            >
-              <option value="grocery">Grocery</option>
-              <option value="cosmetics">Cosmetics</option>
-              <option value="">Tech</option>
-              <option value="">Vegetable</option>
-              <option value="">Food</option>
-              <option value="">Wholesale</option>
-              <option value="">Spices</option>
-            </select>
-          </div>
-          <div class="">
-            <label for="brand" class="mb- text-sm gri font-medium text-gray-900"
-              >Shop opended duration</label
-            >
-            <div class="grid grid-cols-2 gap-3 mt-1">
-              <div>
-                <input
-                  type="time"
-                  name="openingtime"
-                  id="openingtime"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                />
-              </div>
-
-              <div>
-                <input
-                  type="time"
-                  name="closingtime"
-                  id="closingtime"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  [(ngModel)]="shop.closingTime"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="col-span-2 pt-2">
-            <hr class="mb-5" />
-            <label for="" class="text-lg font-medium text-gray-900 mt-2">
-              Shop location adress
-            </label>
-
-            <div class="grid grid-cols-2 gap-4 mt-4">
-              <div class="col-span-2">
-                <label
-                  for="price"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                  >Address Line 1</label
-                >
-                <input
-                  type="text"
-                  name="address"
-                  id="address"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                />
-              </div>
-
-              <div>
-                <label
-                  for="price"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                  >City</label
-                >
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  [(ngModel)]="shop.city"
-                />
-              </div>
-              <div>
-                <label
-                  for="price"
-                  class="block mb-2 text-sm font-medium text-gray-900"
-                  >Zip Code</label
-                >
-                <input
-                  type="number"
-                  name="Zip"
-                  id="zip"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  [(ngModel)]="shop.zip"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="justify-center w-full col-span-2">
-            <div class="">
-              <label
-                for="dropzone-file"
-                class="block mb-2 text-sm font-medium text-gray-900"
-                >Add your shop logo</label
-              >
-              <label
-                for="dropzone-file"
-                class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
-              >
-                <div
-                  class="flex flex-col items-center justify-center pt-5 pb-6"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="w-10 h-10 mb-3 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                    ></path>
-                  </svg>
-                  <p class="mb-2 text-sm text-gray-500">
-                    <span class="font-semibold">Click to upload a Logo</span>
-                    or drag and drop
-                  </p>
-                  <p class="text-xs text-gray-500">
-                    SVG, PNG, JPG or GIF (MAX. 4MB)
-                  </p>
-                </div>
-                <input
-                  id="dropzone-file"
-                  type="file"
-                  class="hidden"
-                  (change)="fileChangeEvent($event)"
-                  (drop)="fileChangeEvent($event)"
-                  accept="image/*"
-                />
-              </label>
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="w-full text-right">
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div
-            class="bg-blue-600 h-2.5 rounded-full"
-            [ngStyle]="{ width: upload.percentage + '%' }"
-          ></div>
-        </div>
-        <button
-          type="submit"
-          (click)="saveShop()"
-          class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Shop Category">
+      <div class="body-height text-center pt-5">
+        <span>What's the category of the shop?</span>
+        <div
+          class="grid grid-cols-5 gap-4 container mx-auto items-center mt-10"
         >
-          <!-- <svg
-                  class="mr-1 -ml-1 w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg> -->
-          Create
-        </button>
+          <div
+            class="pt-10 max-w-sm cursor-pointer border-2 border-gray-100 hover:shadow-2xl transition-all w-full m-6 shadow-lg rounded-lg"
+            *ngFor="let type of shop_types"
+            matStepperNext
+            (click)="afterType(stepper, type.type)"
+            [ngClass]="{ 'border-blue-500 ': shop.type === type.type }"
+          >
+            <div class="">
+              <img [src]="type.image" class="h-36 mx-auto" alt="Type" />
+            </div>
+            <div class="text-center my-5">
+              <span class="text-2xl"> {{ type.type | titlecase }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="my-4 w-52 mx-auto">
+          <button
+            type="submit"
+            matStepperPrevious
+            class="text-white px-8 max-w-sm w-36 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+          >
+            Previous
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="curve_bottom hidden md:block -z-10">
-    <svg
-      data-name="Layer 1"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-        class="shape-fill"
-      ></path>
-    </svg>
-  </div>
+    </mat-step>
+    <mat-step label="Logo and Image">
+      <div
+        class="body-height text-center flex items-center justify-center container mx-auto"
+      >
+        <div class="w-full">
+          <div class="text-center mt-5">
+            <label class="md:text-2xl text-lg" for=""
+              >Upload a Cover image</label
+            >
+            <div class="justify-center w-full col-span-2">
+              <div class="max-w-lg mx-auto mt-4">
+                <label
+                  for="dropzone-file"
+                  class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-10 h-10 mb-3 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                      ></path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500">
+                      <span class="font-semibold">Click to upload a Image</span>
+                      or drag and drop
+                    </p>
+                    <p class="text-xs text-gray-500">
+                      SVG, PNG, JPG or GIF (MAX. 4MB)
+                    </p>
+                  </div>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 md:text-2xl text-lg">
+            <span>Upload a Logo?</span>
+            <div
+              class="justify-center mx-auto w-36 h-36 rounded-full col-span-2"
+            >
+              <div class="max-w-lg mx-auto mt-4">
+                <label
+                  for="dropzone-file"
+                  class="flex flex-col items-center justify-center w-36 h-36 rounded-full border-2 border-gray-300 border-dashed cursor-pointer bg-gray-50"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-10 h-10 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                      ></path>
+                    </svg>
+                  </div>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Fill out your address">
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+    <mat-step label="Fill out your address">
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+    <mat-step label="Fill out your address">
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>
