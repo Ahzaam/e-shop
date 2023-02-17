@@ -1,7 +1,7 @@
 {
   "projects": {
     "default": "e-shop-1626e",
-    "main": "online-shoppings"
+    "prod": "online-shoppings"
   },
   "targets": {
     "e-shop-1626e": {
@@ -14,12 +14,9 @@
     "online-shoppings": {
       "hosting": {
         "e-shop": [
-          "authentication",
-          "firestore",
-          "hosting"
+          "online-shoppings"
         ]
       }
     }
-  },
-  "etags": {}
+  }
 }

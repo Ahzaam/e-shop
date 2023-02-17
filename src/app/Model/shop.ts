@@ -1,5 +1,6 @@
 export interface Shop {
   joined: number;
+  email: string;
   bannerImg: string;
   openingTime: string;
   closingTime: string;
@@ -12,6 +13,8 @@ export interface Shop {
   shopId: string;
   type: string;
   address: string;
+  product_count: number;
+  selled_count: number;
   city: string;
   zip: number;
   docId: string;

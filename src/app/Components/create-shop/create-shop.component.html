@@ -44,10 +44,10 @@
       <div class="body-height text-center pt-5">
         <span>What's the category of the shop?</span>
         <div
-          class="grid grid-cols-5 gap-4 container mx-auto items-center mt-10"
+          class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 container mx-auto items-center mt-10"
         >
           <div
-            class="pt-10 max-w-sm cursor-pointer border-2 border-gray-100 hover:shadow-2xl transition-all w-full m-6 shadow-lg rounded-lg"
+            class="pt-10 max-w-sm cursor-pointer border-2 border-gray-100 hover:shadow-2xl transition-all w-full shadow-lg rounded-lg"
             *ngFor="let type of shop_types"
             matStepperNext
             (click)="afterType(stepper, type.type)"
