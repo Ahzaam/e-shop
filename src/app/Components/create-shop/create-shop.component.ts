@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { base64ToFile } from 'ngx-image-cropper';
 import { AlertComponent } from 'src/app/Dialogs/alert/alert.component';
 import { ImageCropComponent } from 'src/app/Dialogs/image-crop/image-crop.component';
 import { Shop } from 'src/app/Model/shop';
+import { AuthenticateService } from 'src/app/Service/authenticate.service';
+import { CommonsService } from 'src/app/Service/commons.service';
 import { DatabaseService } from 'src/app/Service/database.service';
 import { StorageService } from 'src/app/Service/storage.service';
 
@@ -14,7 +17,18 @@ import { StorageService } from 'src/app/Service/storage.service';
   styleUrls: ['./create-shop.component.css'],
 })
 export class CreateShopComponent implements OnInit {
-  imageChangedEvent: any = '';
+  cropped_banner: { base_64_to_image: Blob; image: any } = <
+    { base_64_to_image: Blob; image: any }
+  >{};
+
+  name_error_message = '';
+
+  banner_comp = false;
+  creating = false;
+  cropped_logo: { base_64_to_image: Blob; image: any } = <
+    { base_64_to_image: Blob; image: any }
+  >{};
+
   upload: { percentage: number; downloadURL: string } = {
     percentage: 0,
     downloadURL: '',
@@ -22,19 +36,26 @@ export class CreateShopComponent implements OnInit {
 
   croppedImage: any = '';
 
-  // This is the shop Object you can access the data inside like shop.name
   shop: Shop = <Shop>{};
+  // This is the shop Object you can access the data inside like shop.name
 
   // 🔥 Call the DatabaseService as same as storage inside constructor 👇👇👇
   // after constructing it you can use it by the name you defined
 
   constructor(
     private dialog: MatDialog,
-    private storage: StorageService,
+    public storage: StorageService,
     private db: DatabaseService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private commonService: CommonsService,
+    private router: Router,
+    private auth: AuthenticateService
   ) {
-    this.shop.paymentGateway = false;
+    this.shop.payment_gateway = false;
+    this.shop.owner_uid = auth.site_user.uid;
+    this.shop.email = auth.site_user.email;
+    this.shop.phone_number = auth.site_user.phone_number;
+    console.log(this.shop);
   }
 
   ngOnInit(): void {}
@@ -55,45 +76,59 @@ export class CreateShopComponent implements OnInit {
     { type: 'furniture', image: '/assets/icons/furniture.jpg' },
   ];
 
-  fileChangeEvent(event: any): void {
-    if (event.target.files[0].size < 4194304) {
-      this.dialog
-        .open(ImageCropComponent, {
-          maxWidth: '700px',
-          maxHeight: '90vh',
+  logoChangeEvent(event: any) {
+    this.commonService
+      .cropper(event.target.files, {
+        aspect_ratio: 1,
+        event: event,
+        rounded: true,
+      })
+      .then((cropped) => {
+        this.cropped_logo = cropped;
 
-          data: {
-            rounded: true,
-            aspectRatio: 1,
-            event,
-          },
-        })
-        .afterClosed()
-        .subscribe((img) => {
-          this.croppedImage = img;
-          let fileUpload = {
-            path: '/shop/id/logo',
-            file: base64ToFile(img.base64),
-            name: '',
-          };
+        // this.storage
+        //   .uploadFile('shop/id/logo', cropped.base_64_to_image, 'logo')
+        //   .then((url) => {
 
-          this.storage.uploadFile(fileUpload, this.upload);
-        });
-    } else {
-      this.dialog.open(AlertComponent, {
-        data: {
-          message: ` your file size is ${(
-            event.target.files[0].size /
-            1024 /
-            1024
-          ).toFixed(1)}MB which is greater than 4MB`,
-        },
+        //     console.log(url);
+        //   });
       });
-    }
   }
 
-  afterName(stepper: any) {
-    stepper.next();
+  bannerChangeEvent(event: any): void {
+    this.commonService
+      .cropper(event.target.files, {
+        aspect_ratio: 4,
+        event: event,
+        rounded: false,
+      })
+      .then((cropped) => {
+        this.cropped_banner = cropped;
+
+        // this.storage
+        //   .uploadFile('shop/id/logo', cropped.base_64_to_image, 'logo')
+        //   .then((url) => {
+
+        //     console.log(url);
+        //   });
+      });
+  }
+
+  async afterName(stepper: any) {
+    this.name_error_message = '';
+    if (this.shop.name === '' || !this.shop.name) {
+      this.name_error_message = 'Enter a shop name to continue';
+    } else {
+      if (await this.db.isShopNameExists(this.shop.name)) {
+        this.name_error_message =
+          'Shop name already exists, Try different name';
+      } else {
+        stepper.next();
+      }
+    }
+  }
+  nameChange() {
+    this.shop.name = this.shop.name.split(' ').join('-');
   }
 
   afterType(stepper: any, type: string) {
@@ -101,11 +136,26 @@ export class CreateShopComponent implements OnInit {
     stepper.next();
   }
 
-  saveShop() {
-    this.shop.docId = this.db.generateDocId();
+  async saveShop() {
+    this.creating = true;
+    this.shop.joined = Date.now();
+    this.shop.lowercase_name = this.shop.name.toLowerCase();
+    this.shop.shop_id = this.db.generateDocId();
 
-    this.db.saveShop(this.shop);
-    console.log(this.shop);
+    this.shop.bannerImg = await this.storage.uploadFile(
+      `Shops/${this.shop.name}/images/banner`,
+      this.cropped_banner.base_64_to_image
+    );
+    this.banner_comp = true;
+
+    this.shop.logo = await this.storage.uploadFile(
+      `Shops/${this.shop.name}/images/logo`,
+      this.cropped_logo.base_64_to_image
+    );
+
+    this.db.saveShop(this.shop).then(() => {
+      this.router.navigate([`/${this.shop.name}`]);
+    });
   }
 
   /** 

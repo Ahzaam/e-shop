@@ -7,48 +7,61 @@ import * as firebase from 'firebase/app';
 import 'firebase/storage';
 
 import { BehaviorSubject, Observable } from 'rxjs';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  public uploadTask?: AngularFireUploadTask;
-  public uploading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+  private uploadTask?: AngularFireUploadTask;
+  private uploading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
 
-  constructor(private storage: AngularFireStorage) {}
+  public percentage = 0;
+  constructor(
+    private storage: AngularFireStorage,
+    private db: DatabaseService
+  ) {}
 
-  uploadFile(
-    fileUpload: { path: any; file: any; name: any },
-    upload: { percentage: number; downloadURL: string }
-  ) {
-    this.uploadTask = this.storage.upload(fileUpload.path, fileUpload.file);
-    // file uploaded here
+  uploadFile(path: any, file: any) {
+    this.percentage = 0;
 
-    this.uploadTask?.percentageChanges().subscribe((percentage) => {
-      upload.percentage = percentage as number;
+    // File uploads here
+    this.uploadTask = this.storage.upload(path, file);
+
+    // Getting the upload percentage by subscribing
+    this.uploadTask.percentageChanges().subscribe((percentage) => {
+      this.percentage = percentage as number;
+      console.log(percentage);
     });
-    this.uploadTask.task.snapshot.ref
-      .getDownloadURL()
-      .then((downloadURL) => (upload.downloadURL = downloadURL));
+
+    // Promise resolves the url
+    return new Promise<string>((resolve) => {
+      this.uploadTask?.then((data) => {
+        data.ref.getDownloadURL().then((url) => {
+          resolve(url);
+        });
+      });
+      // file uploaded here
+    });
   }
 
-  public cancelUploadTask() {
+  cancelUploadTask() {
     this.uploading.next(false);
     this.uploadTask?.cancel();
   }
 
-  public pauseUploadTask() {
+  pauseUploadTask() {
     this.uploading.next(false);
     this.uploadTask?.pause();
   }
-  public resumeUploadTask() {
+  resumeUploadTask() {
     this.uploading.next(false);
     this.uploadTask?.resume();
   }
 
-  public isActiveRunning(): Observable<boolean> {
+  isActiveRunning(): Observable<boolean> {
     return this.uploading.asObservable();
   }
 }

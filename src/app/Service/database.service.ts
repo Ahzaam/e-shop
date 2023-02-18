@@ -6,27 +6,18 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Shop } from '../Model/shop';
+import { SiteUser } from '../Model/siteuser';
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
-  private static readonly Product = 'Products';
-  private static readonly Shops = 'Shops';
+  private static readonly _product = 'Products';
+  private static readonly _shops = 'Shops';
+  private static readonly _users = 'Users';
 
   constructor(private firestore: AngularFirestore) {}
 
-  getUserData(userId: string) {
-    return new Promise((resolve) => {
-      this.firestore
-        .collection('Users')
-        .doc(userId)
-        .get()
-        .subscribe((data) => {
-          resolve(data.data());
-        });
-    });
-  }
-
+  // COMMON
   generateDocId() {
     /** Generates a document id for firestore document */
     return this.firestore.createId();
@@ -41,30 +32,69 @@ export class DatabaseService {
   getProduct() {
     /**
      * Snapshots the products */
-    return this.firestore
-      .collection(DatabaseService.Product)
-      .snapshotChanges()
-      .pipe(map((responce) => responce.map((data) => data.payload.doc.data())));
+    // return this.firestore
+    //   .collection(DatabaseService._product)
+    //   .snapshotChanges()
+    //   .pipe(map((responce) => responce.map((data) => data.payload.doc.data())));
   }
 
   getAllProduct() {
-    return this.docReturn(
-      this.firestore.collection('Product').doc('3BPVYpNKOWpsgimAUy2X')
-    );
+    // this.firestore.collection('Product').doc('3BPVYpNKOWpsgimAUy2X')
   }
 
-  private docReturn(fun: AngularFirestoreDocument<unknown>) {
-    return new Promise((resolve) => {
-      fun.get().subscribe((data) => {
-        resolve(data.data());
-      });
+  // SHOP
+  saveShop(shop: Shop) {
+    return this.firestore
+      .collection(DatabaseService._shops)
+      .doc(shop.shop_id)
+      .set(shop);
+  }
+
+  getShopByName(name: string) {
+    return new Promise<Shop>((resolve, reject) => {
+      this.firestore
+        .collection(DatabaseService._shops, (result) =>
+          result.where('name', '==', name)
+        )
+        .get()
+        .subscribe((shops) => {
+          const shop: Shop = (<Shop[]>shops.docs.map((docs) => docs.data()))[0];
+          resolve(shop);
+        });
     });
   }
 
-  saveShop(shop: Shop) {
+  isShopNameExists(name: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.firestore
+        .collection(DatabaseService._shops, (result) =>
+          result.where('name', '==', name)
+        )
+
+        .get()
+        .subscribe((response) => {
+          resolve(response.docs.length !== 0);
+        });
+    });
+  }
+
+  // USER
+  getUser(uid: string) {
+    return new Promise<SiteUser>((resolve, reject) => {
+      this.firestore
+        .collection(DatabaseService._users)
+        .doc(uid)
+        .get()
+        .subscribe((docs) => {
+          resolve(<SiteUser>docs.data());
+        });
+    });
+  }
+
+  createUser(site_user: SiteUser) {
     return this.firestore
-      .collection(DatabaseService.Shops)
-      .doc(shop.docId)
-      .set(shop);
+      .collection(DatabaseService._users)
+      .doc(site_user.uid)
+      .set(site_user);
   }
 }

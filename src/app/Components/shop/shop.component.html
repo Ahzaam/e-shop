@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="shop">
   <div class="bg-blue-600">
     <div class="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
       <div class="flex flex-wrap items-center justify-between">
@@ -84,23 +84,17 @@
   <!--banner section -->
   <div
     class="bg-cover bg-center h-auto text-white py-24 px-10 object-fill"
-    style="
-      background-image: url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-    "
+    [ngStyle]="{ 'background-image': 'url(' + shop.bannerImg + ')' }"
   >
     <div class="md:w-1/2">
-      <img
-        class="w-auto h-48 object-cover"
-        src="https://as1.ftcdn.net/v2/jpg/02/45/84/16/1000_F_245841615_d7QzRv937jfiC176rmKK60ckNXU9V76z.jpg"
-        alt=""
-      />
+      <img class="w-auto h-48 object-cover" [src]="shop.logo" alt="" />
     </div>
     <div class="md:w-1/2">
-      <p class="font-bold text-4xl uppercase">GLIDE Ceylon</p>
+      <p class="font-bold text-4xl uppercase">{{ shop.name }}</p>
       <p class="text-2xl">
-        No.33, Main street, <br />Kandy. KCC Building <br />
+        {{ shop.address }} <br />
         Sri Lanka <br />
-        74430
+        {{ shop.zip }}
       </p>
       <a
         href="#"

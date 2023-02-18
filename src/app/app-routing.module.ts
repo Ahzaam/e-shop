@@ -11,12 +11,6 @@ import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component
 import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'shop',
-    component: ShopComponent,
-    title: 'Shop',
-    canActivate: [AuthGuard],
-  },
   { path: '', component: HomeComponent },
   { path: 'auth', component: AuthenticateComponent, canActivate: [AuthGuard] },
   {
@@ -32,6 +26,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'admin', component: ShopAdminComponent, canActivate: [AuthGuard] },
+  {
+    path: ':shop_name',
+    component: ShopComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

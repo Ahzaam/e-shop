@@ -7,13 +7,27 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'firebase/auth';
+import { DatabaseService } from './database.service';
+import { SiteUser } from '../Model/siteuser';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticateService {
-  public g_user: User | any;
-  public user: any;
-  constructor(private fireAuth: AngularFireAuth) {}
+  public g_user: User = <User>{};
+  public site_user: SiteUser = <SiteUser>{};
+
+  constructor(private fireAuth: AngularFireAuth, private db: DatabaseService) {
+    fireAuth.authState.subscribe((state) => {
+      this.g_user = <User>state;
+      if (state) {
+        console.log(state.uid);
+        db.getUser(state.uid).then((user) => {
+          this.site_user = user;
+          console.log(user);
+        });
+      }
+    });
+  }
 
   // Sign in with email/password
   SignInWithEmail(email: string, password: string) {
@@ -33,11 +47,20 @@ export class AuthenticateService {
     return this.fireAuth
       .signInWithPopup(provider)
       .then((result) => {
-        result.additionalUserInfo?.isNewUser;
-
-        this.isUserAvailable().subscribe((user) => {
-          this.g_user = user;
-        });
+        if (result.additionalUserInfo?.isNewUser) {
+          const site_user: SiteUser = <SiteUser>{};
+          site_user.email = <string>result.user?.email;
+          site_user.uid = <string>result.user?.uid;
+          site_user.name = <string>result.user?.displayName;
+          // result.user?.sendEmailVerification();
+          this.db.createUser(site_user).then(() => {
+            this.site_user = site_user;
+          });
+        } else {
+          this.db.getUser(result.user!.uid).then((user) => {
+            this.site_user = user;
+          });
+        }
       })
       .catch((error) => {
         console.log(error);

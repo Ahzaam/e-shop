@@ -19,6 +19,7 @@ export class ImageCropComponent implements OnInit {
     },
     private matDialogRef: MatDialogRef<ImageCropComponent>
   ) {
+    console.log(this.data.aspectRatio);
     if (!this.data.aspectRatio) {
       this.data.aspectRatio = 1;
     } else {

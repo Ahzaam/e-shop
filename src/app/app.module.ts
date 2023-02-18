@@ -38,7 +38,7 @@ import { ViewProductComponent } from './Components/view-product/view-product.com
 import { ShopComponent } from './Components/shop/shop.component';
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
 import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
-
+import { AlertComponent } from './Dialogs/alert/alert.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +57,7 @@ import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
     CreateShopComponent,
     ImageCropComponent,
     ShopAdminComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
