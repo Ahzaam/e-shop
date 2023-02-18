@@ -12,7 +12,7 @@ import { User } from 'firebase/auth';
 })
 export class AuthenticateService {
   public g_user: User | any;
-
+  public user: any;
   constructor(private fireAuth: AngularFireAuth) {}
 
   // Sign in with email/password
@@ -33,6 +33,8 @@ export class AuthenticateService {
     return this.fireAuth
       .signInWithPopup(provider)
       .then((result) => {
+        result.additionalUserInfo?.isNewUser;
+
         this.isUserAvailable().subscribe((user) => {
           this.g_user = user;
         });

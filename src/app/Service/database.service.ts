@@ -61,12 +61,6 @@ export class DatabaseService {
     });
   }
 
-  private colReturn(fun: any) {
-    return new Promise((resolve) => {
-      fun.get().subscribe(() => {});
-    });
-  }
-
   saveShop(shop: Shop) {
     return this.firestore
       .collection(DatabaseService.Shops)
