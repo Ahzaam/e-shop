@@ -7,7 +7,7 @@ import { CommonsService } from 'src/app/Service/commons.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private bound: CommonsService) {}
+  constructor(private bound: CommonsService) { }
 
   ngOnInit(): void {
     this.bound.setBound('perfume');

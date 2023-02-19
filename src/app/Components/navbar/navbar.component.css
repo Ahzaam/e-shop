@@ -5,3 +5,21 @@
 #avatarButton:hover .ahzam {
   display: block;
 }
+
+.grow-nav {
+  width: 90%;
+  height: 100%;
+  animation: grow 400ms;
+}
+
+@keyframes grow {
+  0% {
+    width: 0%;
+    height: 50%;
+  }
+
+  100% {
+    width: 90%;
+    height: 100%;
+  }
+}

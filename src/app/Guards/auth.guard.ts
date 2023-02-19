@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     public authService: AuthenticateService,
     public router: Router //public dialog: MatDialog
-  ) {}
+  ) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -25,6 +25,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    return this.authService.isLoggedIn();
   }
 }

@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { CommonsService } from 'src/app/Service/commons.service';
 import { DatabaseService } from 'src/app/Service/database.service';
+import algoliasearch from 'algoliasearch/lite';
 
+const client = algoliasearch('72P2HJ121O', 'd196e19d15205d7001a2a73ede52a083');
+const index = client.initIndex('test_online_shop');
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,17 +18,14 @@ export class NavbarComponent implements OnInit {
   darkBound: boolean = false;
   userdet = true;
   smallnav = true;
-  isAuth = false;
-  user: any;
-  load = true;
-  data: any;
+  search = false;
+
   constructor(
     public auth: AuthenticateService,
-    private db: DatabaseService,
-    private dialog: MatDialog,
+
     public router: Router,
     private getbound: CommonsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     window.addEventListener('scroll', () => {
@@ -39,14 +39,21 @@ export class NavbarComponent implements OnInit {
         this.darkBound = false;
       }
     });
-    this.auth.isUserAvailable().subscribe((user) => {
-      this.load = false;
-      if (user) {
-        this.user = user;
-        this.isAuth = true;
-      } else {
-        this.isAuth = false;
+
+  }
+  ngAfterViewInit(): void {
+    document.body.addEventListener('click', (ev) => {
+      let ele = ev.target as HTMLDivElement;
+      console.log(ele.id)
+      if (ele.id !== 'navbar-multi-level' && ele.id !== 'toggle') {
+        this.smallnav = true;
       }
     });
+  }
+
+  searchAlgolia(event: any): void {
+    index.search(event.target.value).then((res) => {
+      console.log(res.hits);
+    })
   }
 }

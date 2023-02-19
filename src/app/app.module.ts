@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 // THIRD-PARTY MODULES
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgAisModule } from 'angular-instantsearch';
 
 // FIREBASE MODULES
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -58,8 +59,10 @@ import { AlertComponent } from './Dialogs/alert/alert.component';
     ImageCropComponent,
     ShopAdminComponent,
     AlertComponent,
+
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -73,8 +76,9 @@ import { AlertComponent } from './Dialogs/alert/alert.component';
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
+    NgAisModule.forRoot(),
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

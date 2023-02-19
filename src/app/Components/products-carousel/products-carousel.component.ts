@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Shop } from 'src/app/Model/shop';
+import { DatabaseService } from 'src/app/Service/database.service';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-carousel',
@@ -9,9 +13,15 @@ export class ProductsCarouselComponent implements OnInit {
   defaultTransform = 0;
   width: number | any;
   slider: HTMLDivElement | any;
-  constructor() {}
 
-  ngOnInit(): void {
+  shops: Shop[] = [];
+
+  constructor(private db: DatabaseService, private router: Router) { }
+
+  async ngOnInit() {
+    this.shops = await this.db.getAllShops()
+
+
     this.slider = document.getElementById('slider');
   }
   ngAfterViewInit() {
@@ -37,4 +47,9 @@ export class ProductsCarouselComponent implements OnInit {
         this.defaultTransform + (this.width + this.width / 8);
     slider.style.transform = 'translateX(' + this.defaultTransform + 'px)';
   }
+
+  navigateToShop(name: string) {
+    this.router.navigate([name])
+  }
+
 }

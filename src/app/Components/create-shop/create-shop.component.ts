@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { base64ToFile } from 'ngx-image-cropper';
-import { AlertComponent } from 'src/app/Dialogs/alert/alert.component';
-import { ImageCropComponent } from 'src/app/Dialogs/image-crop/image-crop.component';
 import { Shop } from 'src/app/Model/shop';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { CommonsService } from 'src/app/Service/commons.service';
@@ -17,17 +14,12 @@ import { StorageService } from 'src/app/Service/storage.service';
   styleUrls: ['./create-shop.component.css'],
 })
 export class CreateShopComponent implements OnInit {
-  cropped_banner: { base_64_to_image: Blob; image: any } = <
-    { base_64_to_image: Blob; image: any }
-  >{};
+  cropped_banner: { base_64_to_image: Blob; image: any } = <{ base_64_to_image: Blob; image: any }>{};
 
   name_error_message = '';
-
   banner_comp = false;
   creating = false;
-  cropped_logo: { base_64_to_image: Blob; image: any } = <
-    { base_64_to_image: Blob; image: any }
-  >{};
+  cropped_logo: { base_64_to_image: Blob; image: any } = <{ base_64_to_image: Blob; image: any }>{};
 
   upload: { percentage: number; downloadURL: string } = {
     percentage: 0,
@@ -43,7 +35,7 @@ export class CreateShopComponent implements OnInit {
   // after constructing it you can use it by the name you defined
 
   constructor(
-    private dialog: MatDialog,
+
     public storage: StorageService,
     private db: DatabaseService,
     private _formBuilder: FormBuilder,
@@ -51,14 +43,19 @@ export class CreateShopComponent implements OnInit {
     private router: Router,
     private auth: AuthenticateService
   ) {
+
     this.shop.payment_gateway = false;
-    this.shop.owner_uid = auth.site_user.uid;
-    this.shop.email = auth.site_user.email;
-    this.shop.phone_number = auth.site_user.phone_number;
-    console.log(this.shop);
+    this.shop.owner_uid = auth.site_user!.uid;
+    this.shop.email = auth.site_user!.email;
+    this.shop.phone_number = auth.site_user!.phone_number;
+    this.shop.status = 'pending'
+    this.shop.rating = 0
+    this.shop.product_count = 0;
+    this.shop.selled_count = 0
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -141,6 +138,7 @@ export class CreateShopComponent implements OnInit {
     this.shop.joined = Date.now();
     this.shop.lowercase_name = this.shop.name.toLowerCase();
     this.shop.shop_id = this.db.generateDocId();
+    this.shop.displayname = this.shop.name.split('-').join(' ')
 
     this.shop.bannerImg = await this.storage.uploadFile(
       `Shops/${this.shop.name}/images/banner`,
@@ -152,6 +150,8 @@ export class CreateShopComponent implements OnInit {
       `Shops/${this.shop.name}/images/logo`,
       this.cropped_logo.base_64_to_image
     );
+
+
 
     this.db.saveShop(this.shop).then(() => {
       this.router.navigate([`/${this.shop.name}`]);

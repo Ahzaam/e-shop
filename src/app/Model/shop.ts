@@ -13,6 +13,8 @@ export interface Shop {
   quote: string;
   phone_number: string;
   rating: number;
+  displayname: string;
+  status: 'declined' | 'pending' | 'new' | 'approved' | 'popular' | 'top';
   shop_id: string;
   type: string;
   address: string;

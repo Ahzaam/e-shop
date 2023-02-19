@@ -6,24 +6,144 @@
   }"
 >
   <div class="w-full flex flex-wrap items-center justify-between mx-auto">
-    <a routerLink="/" class="flex items-center">
+    <a
+      [ngClass]="{ 'md:block hidden': search }"
+      routerLink="/"
+      class="flex items-center"
+    >
       <span
-        class="self-center text-xl font-semibold whitespace-nowrap"
+        class="self-center text-xl my-2 font-semibold whitespace-nowrap"
         [ngClass]="{ 'text-white ': darkBound }"
         >GLIDE Ceylon</span
       >
     </a>
+    <form class="flex-grow float-left max-w-sm my-2 md:hidden">
+      <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only"
+        >Search</label
+      >
+      <div
+        class="relative flex flex-wrap text-right"
+        [ngClass]="{ hidden: !search }"
+      >
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5 text-gray-500 hidden md:block"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="search"
+          id="default-search"
+          (keyup)="searchAlgolia($event)"
+          [ngClass]="{ 'grow-nav': search }"
+          class="block w-full p-1 mx-auto outline-none pl-10 text-lg border border-gray-300 bg-transparent text-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search "
+          required
+        />
+        <div
+          (click)="search = false"
+          class="w-5 h-5 z-50 mt-1.5 mx-auto text-gray-500 md:hidden"
+        >
+          <span (click)="search = false" class="">
+            <mat-icon (click)="search = false">close</mat-icon></span
+          >
+        </div>
+      </div>
+    </form>
+
+    <form class="flex-grow max-w-sm my-2 md:block hidden">
+      <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only"
+        >Search</label
+      >
+      <div class="relative flex flex-wrap text-right">
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5 text-gray-500 hidden md:block"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="search"
+          id="default-search"
+          (keyup)="searchAlgolia($event)"
+          [ngClass]="{ 'grow-nav': search }"
+          class="block w-full p-1 mx-auto outline-none pl-10 text-lg border border-gray-300 bg-transparent text-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search "
+          required
+        />
+      </div>
+    </form>
+
     <button
+      type="button"
+      *ngIf="!search"
+      (click)="search = true"
+      class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      aria-controls="navbar-multi-level"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Search</span>
+      <svg
+        aria-hidden="true"
+        class="w-5 h-5 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        ></path>
+      </svg>
+    </button>
+
+    <button
+      *ngIf="!search"
       data-collapse-toggle="navbar-multi-level"
       (click)="smallnav = !smallnav"
       [ngClass]="{ 'text-white ': darkBound }"
       type="button"
+      id="toggle"
       class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
       aria-controls="navbar-multi-level"
       aria-expanded="false"
     >
       <span class="sr-only">Open main menu</span>
       <svg
+        id="toggle"
         class="w-6 h-6"
         aria-hidden="true"
         fill="currentColor"
@@ -37,6 +157,7 @@
         ></path>
       </svg>
     </button>
+
     <div
       class="sm:hidden w-full md:block md:w-auto"
       id="navbar-multi-level"
@@ -44,7 +165,7 @@
     >
       <ul
         [ngClass]="{ 'text-white ': darkBound }"
-        class="flex flex-col p-2 pt-4 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
+        class="flex flex-col pt-3 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
       >
         <li class="pt-2">
           <a
@@ -90,9 +211,9 @@
           >
         </li>
 
-        <li class="relative">
-          <ng-template [ngIf]="load" [ngIfElse]="loded">
-            <div role="status">
+        <li class="relative mb-2">
+          <ng-template [ngIf]="!auth.is_loaded" [ngIfElse]="loded">
+            <div role="status w-10 h-10 ">
               <svg
                 aria-hidden="true"
                 class="mr-2 w-8 h-8 text-gray-200 animate-spin fill-blue-600"
@@ -113,15 +234,15 @@
             </div>
           </ng-template>
           <ng-template #loded>
-            <ng-template [ngIf]="isAuth" [ngIfElse]="login">
+            <ng-template [ngIf]="auth.is_logged_in" [ngIfElse]="login">
               <img
                 id="avatarButton"
                 type="button"
                 routerLink="/profile"
                 data-dropdown-toggle="userDropdown"
                 data-dropdown-placement="bottom-start"
-                class="w-10 h-10 rounded-full userDropdown cursor-pointer g"
-                [src]="user.photoURL"
+                class="w-8 h-8 rounded-full userDropdown cursor-pointer g"
+                [src]="auth.site_user?.profile_photo"
                 alt="User "
               />
             </ng-template>
@@ -129,7 +250,7 @@
               <button
                 routerLink="/auth"
                 type="button"
-                class="text-white h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                class="text-white h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium text-sm px-5 py-2.5 text-center"
               >
                 Login
               </button>

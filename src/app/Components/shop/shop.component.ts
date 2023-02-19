@@ -11,11 +11,11 @@ import { DatabaseService } from 'src/app/Service/database.service';
 export class ShopComponent implements OnInit {
   shop: Shop | undefined | null;
 
-  constructor(private route: ActivatedRoute, private db: DatabaseService) {}
+  constructor(private route: ActivatedRoute, private db: DatabaseService) { }
 
   ngOnInit(): void {
     this.db
-      .getShopByName(<string>this.route.snapshot.paramMap.get('shop_name'))
+      .getShopByName(<string>this.route.snapshot.paramMap.get('shop_name')?.toLowerCase())
       .then((shop) => {
         this.shop = shop;
       });

@@ -1,9 +1,11 @@
 export interface Product {
   name: string;
+  id: string;
   addedDate: number;
   category: string;
   description: string;
-  byunit: boolean;
+  by_unit: boolean;
+  status: 'selling' | 'out_of_stock' | 'stopped';
   discount: number;
   advertise: boolean;
   feature: Array<string>;

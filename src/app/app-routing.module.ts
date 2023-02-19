@@ -10,9 +10,12 @@ import { ViewProductComponent } from './Components/view-product/view-product.com
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
 import { AuthGuard } from './Guards/auth.guard';
 
+
 const routes: Routes = [
+  // {
+  // path: '', canActivate: [LoadGuard], children: [
   { path: '', component: HomeComponent },
-  { path: 'auth', component: AuthenticateComponent, canActivate: [AuthGuard] },
+  { path: 'auth', component: AuthenticateComponent, canActivate: [] },
   {
     path: 'profile',
     component: UserProfileComponent,
@@ -25,16 +28,18 @@ const routes: Routes = [
     component: CreateShopComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'admin', component: ShopAdminComponent, canActivate: [AuthGuard] },
+  { path: 'shop/admin', component: ShopAdminComponent, canActivate: [AuthGuard] },
   {
     path: ':shop_name',
     component: ShopComponent,
     canActivate: [AuthGuard],
   },
-];
+]
+// }
+// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

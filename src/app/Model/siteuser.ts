@@ -1,5 +1,6 @@
 export interface SiteUser {
   name: string;
+  profile_photo: string;
   email: string;
   address: string;
   location: string[];

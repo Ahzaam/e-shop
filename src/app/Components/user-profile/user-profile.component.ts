@@ -8,13 +8,11 @@ import { AuthenticateService } from 'src/app/Service/authenticate.service';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-  user: User | any;
-  constructor(private auth: AuthenticateService) {}
+
+  constructor(public auth: AuthenticateService) { }
 
   ngOnInit(): void {
-    this.auth.isUserAvailable().subscribe((user) => {
-      this.user = user;
-    });
+
   }
 
   logout() {
