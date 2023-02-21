@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy:prod": "firebase use prod && ng build --configuration=production && firebase deploy"
+    "deploy": "firebase use default && ng build --configuration=test && firebase deploy --only hosting:e-shop-1626e",
+    "deploy:prod": "firebase use main && ng build --configuration=prod && firebase deploy --only hosting:online-shoppings"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +24,6 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "algoliasearch": "^4.14.3",
-    "angular-instantsearch": "^4.4.0",
-    "instantsearch.js": "^4.51.0",
     "ngx-image-cropper": "^6.3.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

@@ -1,7 +1,7 @@
 {
   "projects": {
     "default": "e-shop-1626e",
-    "prod": "online-shoppings"
+    "main": "online-shoppings"
   },
   "targets": {
     "e-shop-1626e": {
