@@ -17,11 +17,14 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
-// MATERIAL ICON
+// MATERIAL 
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+
+
 
 // COMPONENTS
 import { StockComponent } from './Components/stock/stock.component';
@@ -40,7 +43,10 @@ import { ShopComponent } from './Components/shop/shop.component';
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
 import { ImageCropComponent } from './Dialogs/image-crop/image-crop.component';
 import { AlertComponent } from './Dialogs/alert/alert.component';
-
+import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';
+import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
+import { AdminInvoiceComponent } from './Components/admin-invoice/admin-invoice.component';
+import { AdminProductsComponent } from './Components/admin-products/admin-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +66,10 @@ import { AlertComponent } from './Dialogs/alert/alert.component';
     ImageCropComponent,
     ShopAdminComponent,
     AlertComponent,
+    AdminOrdersComponent,
+    AdminDashboardComponent,
+    AdminInvoiceComponent,
+    AdminProductsComponent,
 
   ],
   imports: [
@@ -77,6 +87,7 @@ import { AlertComponent } from './Dialogs/alert/alert.component';
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
+    MatTabsModule
 
 
   ],
