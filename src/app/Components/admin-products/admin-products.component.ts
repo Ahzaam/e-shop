@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { NewProductComponent } from 'src/app/Dialogs/new-product/new-product.component';
 
 @Component({
   selector: 'app-admin-products',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+
+  newProduct() {
+    this.dialog.open(NewProductComponent)
   }
 
 }

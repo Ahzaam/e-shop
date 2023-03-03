@@ -49,12 +49,49 @@
         <input
           type="search"
           id="default-search"
+          data-dropdown-toggle="dropdownDivider2"
+          autocomplete="off"
           (keyup)="searchAlgolia($event)"
           [ngClass]="{ 'grow-nav': search }"
           class="block w-full p-1 mx-auto outline-none pl-10 text-lg border border-gray-300 bg-transparent text-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
           placeholder="Search "
           required
         />
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownDivider2"
+          [ngClass]="{ 'text-white bg-black': darkBound }"
+          class="z-10 hidden px-3 bg-white text-left divide-y w-full divide-gray-100 rounded-2xl shadow"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="dropdownDividerButton"
+          >
+            <li
+              *ngFor="let result of results"
+              class="hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="grid grid-cols-6">
+                <div class="p-2">
+                  <img [src]="result.logo" alt="result" class="rounded-lg" />
+                </div>
+                <div class="block px-4 py-2 text-base">
+                  <div class="">{{ result.displayname | titlecase }}</div>
+                  <div class="">
+                    {{ result.shop_id ? "Shop" : "Product" }}
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- <div class="py-2">
+             <a
+               href="#"
+               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+               >Separated link</a
+             >
+           </div> -->
+        </div>
         <div
           (click)="search = false"
           class="w-5 h-5 z-50 mt-1.5 mx-auto text-gray-500 md:hidden"
@@ -94,6 +131,9 @@
         </div>
         <input
           type="search"
+          data-dropdown-toggle="dropdownDivider"
+          autocomplete="off"
+          rec
           id="default-search"
           (keyup)="searchAlgolia($event)"
           [ngClass]="{ 'grow-nav': search }"
@@ -101,6 +141,50 @@
           placeholder="Search "
           required
         />
+
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownDivider"
+          [ngClass]="{ ' bg-black ': darkBound }"
+          class="z-10 hidden bg-white text-left divide-y w-full divide-gray-100 rounded-lg shadow"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="dropdownDividerButton"
+          >
+            <li
+              *ngFor="let result of results"
+              [ngClass]="{ 'text-white bg-black hover:bg-gray-900': darkBound }"
+              class="hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="grid grid-cols-6">
+                <div class="p-2">
+                  <img
+                    [src]="result.logo"
+                    alt="result"
+                    class="rounded-lg border border-gray-400"
+                  />
+                </div>
+                <div class="block px-4 py-2 text-base col-span-3">
+                  <div class="">{{ result.displayname | titlecase }}</div>
+                  <div class="">
+                    {{ result.shop_id ? "Shop" : "Product" }}
+                  </div>
+                </div>
+                <div class="col-span-2">
+                  <app-star-rating [rating]="result.rating"></app-star-rating>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- <div class="py-2">
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Separated link</a
+            >
+          </div> -->
+        </div>
       </div>
     </form>
 

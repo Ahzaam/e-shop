@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Shop } from 'src/app/Model/shop';
 import { AuthenticateService } from 'src/app/Service/authenticate.service';
 import { CommonsService } from 'src/app/Service/commons.service';
 import { DatabaseService } from 'src/app/Service/database.service';
-import algoliasearch from 'algoliasearch/lite';
+import { SearchService } from 'src/app/Service/search.service';
 
-const client = algoliasearch('72P2HJ121O', 'd196e19d15205d7001a2a73ede52a083');
-const index = client.initIndex('test_online_shop');
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -20,11 +19,15 @@ export class NavbarComponent implements OnInit {
   smallnav = true;
   search = false;
 
+  results: any[] = [];
+
+
   constructor(
     public auth: AuthenticateService,
 
     public router: Router,
-    private getbound: CommonsService
+    private getbound: CommonsService,
+    private searchService: SearchService
   ) { }
 
   ngOnInit(): void {
@@ -52,8 +55,9 @@ export class NavbarComponent implements OnInit {
   }
 
   searchAlgolia(event: any): void {
-    index.search(event.target.value).then((res) => {
-      console.log(res.hits);
+    this.searchService.SearchAll(event.target.value).then((results: any) => {
+      this.results = results
+      console.log(results)
     })
   }
 }

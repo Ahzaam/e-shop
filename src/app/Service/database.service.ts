@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { Product } from '../Model/product';
 import { Shop } from '../Model/shop';
 import { SiteUser } from '../Model/siteuser';
+import { TouchMessage } from '../Model/touch-message';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +16,7 @@ export class DatabaseService {
   private static readonly _products = 'Products';
   private static readonly _shops = 'Shops';
   private static readonly _users = 'Users';
+  private static readonly _touch_message = 'TouchMessage';
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -131,4 +133,10 @@ export class DatabaseService {
     return this.firestore.collection(DatabaseService._products).doc(product.id).set(product);
   }
 
+
+
+  // PRODUCT TOUCH MESSAGE
+  sendMessage(message: TouchMessage) {
+    return this.firestore.collection(DatabaseService._touch_message).doc(message.id).set(message)
+  }
 }

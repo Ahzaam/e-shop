@@ -349,7 +349,7 @@
     <div
       class="lg:w-1/2 w-full shadow-md pb-16 lg:py-16 px-4 mx-auto max-w-screen-md"
     >
-      <form action="#" class="space-y-8">
+      <div class="space-y-8">
         <div>
           <label
             for="email"
@@ -358,6 +358,7 @@
           >
           <input
             type="email"
+            [(ngModel)]="touch_message.email"
             id="email"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
             placeholder="name@gmail.com"
@@ -372,6 +373,7 @@
           >
           <input
             type="text"
+            [(ngModel)]="touch_message.phone_number"
             id="phone"
             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
             placeholder="+94 77 5555 666"
@@ -386,6 +388,7 @@
           >
           <input
             type="text"
+            [(ngModel)]="touch_message.subject"
             id="subject"
             class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500"
             placeholder="Let us know how we can help you"
@@ -400,6 +403,7 @@
           >
           <textarea
             id="message"
+            [(ngModel)]="touch_message.message"
             rows="6"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
             placeholder="Leave a comment..."
@@ -407,11 +411,12 @@
         </div>
         <button
           type="submit"
+          (click)="sendMessage()"
           class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-blue-600 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300"
         >
           Send message
         </button>
-      </form>
+      </div>
     </div>
   </section>
   <footer class="p-4 bg-white sm:p-6">

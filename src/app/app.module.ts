@@ -47,6 +47,8 @@ import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.com
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 import { AdminInvoiceComponent } from './Components/admin-invoice/admin-invoice.component';
 import { AdminProductsComponent } from './Components/admin-products/admin-products.component';
+import { StarRatingComponent } from './Components/star-rating/star-rating.component';
+import { NewProductComponent } from './Dialogs/new-product/new-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +72,8 @@ import { AdminProductsComponent } from './Components/admin-products/admin-produc
     AdminDashboardComponent,
     AdminInvoiceComponent,
     AdminProductsComponent,
+    StarRatingComponent,
+    NewProductComponent,
 
   ],
   imports: [
