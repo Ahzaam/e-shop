@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 // THIRD-PARTY MODULES
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { GoogleMapsModule } from '@angular/google-maps'
 
 // FIREBASE MODULES
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -49,6 +49,8 @@ import { AdminInvoiceComponent } from './Components/admin-invoice/admin-invoice.
 import { AdminProductsComponent } from './Components/admin-products/admin-products.component';
 import { StarRatingComponent } from './Components/star-rating/star-rating.component';
 import { NewProductComponent } from './Dialogs/new-product/new-product.component';
+import { OrderTrackingComponent } from './Components/order-tracking/order-tracking.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +76,8 @@ import { NewProductComponent } from './Dialogs/new-product/new-product.component
     AdminProductsComponent,
     StarRatingComponent,
     NewProductComponent,
+    OrderTrackingComponent,
+
 
   ],
   imports: [
@@ -91,7 +95,8 @@ import { NewProductComponent } from './Dialogs/new-product/new-product.component
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatTabsModule
+    MatTabsModule,
+    GoogleMapsModule
 
 
   ],

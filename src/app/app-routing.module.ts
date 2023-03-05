@@ -9,6 +9,8 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { ShopAdminComponent } from './Components/shop-admin/shop-admin.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { OrderTrackingComponent } from './Components/order-tracking/order-tracking.component';
+
 
 
 const routes: Routes = [
@@ -29,11 +31,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'shop/admin', component: ShopAdminComponent, canActivate: [AuthGuard] },
+  { path: 'order/tracking', component: OrderTrackingComponent },
+
+
+  // THIS SHOULD BE THE LAST
   {
     path: ':shop_name',
     component: ShopComponent,
     canActivate: [AuthGuard],
   },
+
 ]
 // }
 // ];
