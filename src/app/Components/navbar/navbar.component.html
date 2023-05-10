@@ -9,13 +9,26 @@
     <a
       [ngClass]="{ 'md:block hidden': search }"
       routerLink="/"
-      class="flex items-center"
+      class="flex items-center md:h-14 h-12 p-1"
     >
-      <span
-        class="self-center text-xl my-2 font-semibold whitespace-nowrap"
-        [ngClass]="{ 'text-white ': darkBound }"
-        >GLIDE Ceylon</span
-      >
+      <img
+        src="/assets/logo/logo.png"
+        [ngClass]="{
+          'hidden ': darkBound,
+          'block ': !darkBound
+        }"
+        class="h-full"
+        alt="Logo"
+      />
+      <img
+        src="/assets/logo/logo-dark.png"
+        [ngClass]="{
+          'hidden ': !darkBound,
+          'block ': darkBound
+        }"
+        class="h-full"
+        alt="Logo"
+      />
     </a>
     <form class="flex-grow float-left max-w-sm my-2 md:hidden">
       <label
