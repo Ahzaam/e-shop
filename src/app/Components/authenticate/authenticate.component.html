@@ -1,0 +1,222 @@
+<body class="overflow-y-hidden bg-transparent" style="height: 90vh">
+  <div
+    class="relative flex items-start -z-10 pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl"
+    style="background-image: url('/assets/images/curved14.jpg')"
+  >
+    <span
+      class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-60"
+    ></span>
+    <div class="container mx-auto">
+      <div class="flex flex-wrap justify-center -mx-3">
+        <div
+          class="w-full max-w-full px-3 mx-auto mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12"
+        >
+          <h1 class="mt-12 mb-2 text-white text-7xl">Welcome!</h1>
+          <p class="text-white">
+            Use these awesome forms to login or create new account in your
+            project for free.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="-mt-48 md:-mt-42 lg:-mt-42 z-50">
+    <ng-template [ngIf]="signin" [ngIfElse]="signup">
+      <section class="bg-transparent h-full">
+        <div
+          class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-full lg:py-0"
+        >
+          <div
+            class="w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0"
+          >
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
+              >
+                Sign in to your account
+              </h1>
+              <form class="space-y-4 md:space-y-6">
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Your email</label
+                  >
+                  <input
+                    type="email"
+                    formControlName="email"
+                    id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    placeholder="name@company.com"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Password</label
+                  >
+                  <input
+                    type="password"
+                    formControlName="password"
+                    id="password"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    required=""
+                  />
+                </div>
+                <div class="flex items-center justify-between">
+                  <a
+                    href="#"
+                    class="text-sm font-medium text-primary-600 hover:underline"
+                    >Forgot password?</a
+                  >
+                </div>
+                <button
+                  (click)="signInWithEmail()"
+                  class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Sign in
+                </button>
+
+                <div class="w-100">
+                  <button
+                    (click)="gAuth($event)"
+                    class="w-full bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none border border-gray-200 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  >
+                    <img
+                      class="w-6 m-0 inline-block mr-4"
+                      src="/assets/images/google.png"
+                      type=""
+                    />
+                    Google
+                  </button>
+                </div>
+                <p class="text-sm font-light text-gray-500">
+                  Don’t have an account yet?
+                  <a
+                    (click)="changeSign()"
+                    class="font-medium text-primary-600 hover:underline cursor-pointer"
+                    >Sign up</a
+                  >
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ng-template>
+    <ng-template #signup>
+      <section class="bg-transparent h-full">
+        <div
+          class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-full lg:py-0"
+        >
+          <div
+            class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0"
+          >
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
+              >
+                Create new account
+              </h1>
+              <form class="space-y-4 md:space-y-6" action="#">
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Name</label
+                  >
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    placeholder="Name"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Your email</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    placeholder="name@company.com"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Password</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    for="repassword"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >Reenter Password</label
+                  >
+                  <input
+                    type="password"
+                    name="repassword"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    required=""
+                  />
+                </div>
+
+                <button
+                  class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Sign up
+                </button>
+
+                <div class="w-full">
+                  <button
+                    (click)="gAuth($event)"
+                    class="w-full bg-white hover:bg-gray-100 duration-300 focus:ring-4 focus:outline-none border border-gray-200 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  >
+                    <img
+                      class="w-6 m-0 inline-block mr-4"
+                      src="/assets/images/google.png"
+                      type=""
+                    />
+                    Google
+                  </button>
+                </div>
+
+                <p class="text-sm font-light text-gray-500">
+                  Already have an account ?
+                  <a
+                    (click)="changeSign()"
+                    class="font-medium text-primary-600 cursor-pointer hover:underline"
+                    >Sign up</a
+                  >
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ng-template>
+  </div>
+</body>

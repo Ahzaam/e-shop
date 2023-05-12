@@ -1,3 +1,4 @@
 {
-  "githubPullRequests.ignoredPullRequestBranches": ["main"]
+  "githubPullRequests.ignoredPullRequestBranches": ["main"],
+  "cSpell.words": ["selled"]
 }

@@ -1,0 +1,37 @@
+.show {
+  opacity: 1;
+  animation-duration: 0.8s;
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hide {
+  opacity: 0;
+
+  animation-duration: 0.8s;
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    display: block;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.banner-height {
+  /* height: 700px; */
+  aspect-ratio: 16/5;
+}

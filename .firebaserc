@@ -1,4 +1,8 @@
 {
+  "projects": {
+    "default": "e-shop-1626e",
+    "main": "online-shoppings"
+  },
   "targets": {
     "e-shop-1626e": {
       "hosting": {
@@ -6,9 +10,13 @@
           "e-shop-1626e"
         ]
       }
+    },
+    "online-shoppings": {
+      "hosting": {
+        "e-shop": [
+          "online-shoppings"
+        ]
+      }
     }
-  },
-  "projects": {
-    "default": "e-shop-1626e"
   }
 }

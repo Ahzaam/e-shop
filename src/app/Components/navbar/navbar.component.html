@@ -1,133 +1,360 @@
-<nav class="bg-white border-gray-200 px-2 h-16 sm:px-4 py-2.5 rounded">
-  <div class="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="https://flowbite.com/" class="flex items-center">
-      <span class="self-center text-xl font-semibold whitespace-nowrap"
-        >GliDE Ceylon</span
-      >
+<nav
+  class="px-2 border-gray-200 shadow-md duration-700 fixed top-0 w-full z-50"
+  [ngClass]="{
+    'bg-black opacity-80': darkBound,
+    'bg-white opacity-90': !darkBound
+  }"
+>
+  <div class="w-full flex flex-wrap items-center justify-between mx-auto">
+    <a
+      [ngClass]="{ 'md:block hidden': search }"
+      routerLink="/"
+      class="flex items-center md:h-14 h-12 p-1"
+    >
+      <img
+        src="/assets/logo/logo.png"
+        [ngClass]="{
+          'hidden ': darkBound,
+          'block ': !darkBound
+        }"
+        class="h-full"
+        alt="Logo"
+      />
+      <img
+        src="/assets/logo/logo-dark.png"
+        [ngClass]="{
+          'hidden ': !darkBound,
+          'block ': darkBound
+        }"
+        class="h-full"
+        alt="Logo"
+      />
     </a>
-    <div class="flex items-center md:order-2">
-      <button
-        type="button"
-        class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
-        id="user-menu-button"
-        aria-expanded="false"
-        data-dropdown-toggle="user-dropdown"
-        data-dropdown-placement="bottom"
+    <form class="flex-grow float-left max-w-sm my-2 md:hidden">
+      <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only"
+        >Search</label
       >
-        <span class="sr-only">Open user menu</span>
-        <img
-          class="w-8 h-8 rounded-full"
-          src="/assets/images/810.jpg"
-          alt="user photo"
-        />
-      </button>
-      <!-- Dropdown menu -->
       <div
-        class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
-        id="user-dropdown"
+        class="relative flex flex-wrap text-right"
+        [ngClass]="{ hidden: !search }"
       >
-        <div class="px-4 py-3">
-          <span class="block text-sm text-gray-900">Bonnie Green</span>
-          <span class="block text-sm font-medium text-gray-500 truncate"
-            >name@flowbite.com</span
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5 text-gray-500 hidden md:block"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="search"
+          id="default-search"
+          data-dropdown-toggle="dropdownDivider2"
+          autocomplete="off"
+          (keyup)="searchAlgolia($event)"
+          [ngClass]="{ 'grow-nav': search }"
+          class="block w-full p-1 mx-auto outline-none pl-10 text-lg border border-gray-300 bg-transparent text-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search "
+          required
+        />
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownDivider2"
+          [ngClass]="{ 'text-white bg-black': darkBound }"
+          class="z-10 hidden px-3 bg-white text-left divide-y w-full divide-gray-100 rounded-2xl shadow"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="dropdownDividerButton"
+          >
+            <li
+              *ngFor="let result of results"
+              class="hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="grid grid-cols-6">
+                <div class="p-2">
+                  <img [src]="result.logo" alt="result" class="rounded-lg" />
+                </div>
+                <div class="block px-4 py-2 text-base">
+                  <div class="">{{ result.displayname | titlecase }}</div>
+                  <div class="">
+                    {{ result.shop_id ? "Shop" : "Product" }}
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- <div class="py-2">
+             <a
+               href="#"
+               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+               >Separated link</a
+             >
+           </div> -->
+        </div>
+        <div
+          (click)="search = false"
+          class="w-5 h-5 z-50 mt-1.5 mx-auto text-gray-500 md:hidden"
+        >
+          <span (click)="search = false" class="">
+            <mat-icon (click)="search = false">close</mat-icon></span
           >
         </div>
-        <ul class="py-1" aria-labelledby="user-menu-button">
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >Dashboard</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >Settings</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >Earnings</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >Sign out</a
-            >
-          </li>
-        </ul>
       </div>
-      <button
-        data-collapse-toggle="mobile-menu-2"
-        type="button"
-        class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-        aria-controls="mobile-menu-2"
-        aria-expanded="false"
+    </form>
+
+    <form class="flex-grow max-w-sm my-2 md:block hidden">
+      <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only"
+        >Search</label
       >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          class="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+      <div class="relative flex flex-wrap text-right">
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none"
         >
-          <path
-            fill-rule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </button>
-    </div>
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5 text-gray-500 hidden md:block"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="search"
+          data-dropdown-toggle="dropdownDivider"
+          autocomplete="off"
+          rec
+          id="default-search"
+          (keyup)="searchAlgolia($event)"
+          [ngClass]="{ 'grow-nav': search }"
+          class="block w-full p-1 mx-auto outline-none pl-10 text-lg border border-gray-300 bg-transparent text-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search "
+          required
+        />
+
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownDivider"
+          [ngClass]="{ ' bg-black ': darkBound }"
+          class="z-10 hidden bg-white text-left divide-y w-full divide-gray-100 rounded-lg shadow"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="dropdownDividerButton"
+          >
+            <li
+              *ngFor="let result of results"
+              [ngClass]="{ 'text-white bg-black hover:bg-gray-900': darkBound }"
+              class="hover:bg-gray-100 cursor-pointer"
+            >
+              <div class="grid grid-cols-6">
+                <div class="p-2">
+                  <img
+                    [src]="result.logo"
+                    alt="result"
+                    class="rounded-lg border border-gray-400"
+                  />
+                </div>
+                <div class="block px-4 py-2 text-base col-span-3">
+                  <div class="">{{ result.displayname | titlecase }}</div>
+                  <div class="">
+                    {{ result.shop_id ? "Shop" : "Product" }}
+                  </div>
+                </div>
+                <div class="col-span-2">
+                  <app-star-rating [rating]="result.rating"></app-star-rating>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!-- <div class="py-2">
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Separated link</a
+            >
+          </div> -->
+        </div>
+      </div>
+    </form>
+
+    <button
+      type="button"
+      *ngIf="!search"
+      (click)="search = true"
+      class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      aria-controls="navbar-multi-level"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Search</span>
+      <svg
+        aria-hidden="true"
+        class="w-5 h-5 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        ></path>
+      </svg>
+    </button>
+
+    <button
+      *ngIf="!search"
+      data-collapse-toggle="navbar-multi-level"
+      (click)="smallnav = !smallnav"
+      [ngClass]="{ 'text-white ': darkBound }"
+      type="button"
+      id="toggle"
+      class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      aria-controls="navbar-multi-level"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        id="toggle"
+        class="w-6 h-6"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+
     <div
-      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-      id="mobile-menu-2"
+      class="sm:hidden w-full md:block md:w-auto"
+      id="navbar-multi-level"
+      [ngClass]="{ 'hidden ': smallnav }"
     >
       <ul
-        class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"
+        [ngClass]="{ 'text-white ': darkBound }"
+        class="flex flex-col pt-3 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
       >
-        <li>
+        <li class="pt-2">
           <a
-            href="#"
-            class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+            routerLink="/"
+            class="block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0"
+            [ngClass]="{ 'text-blue-700': router.isActive('/', true) }"
             aria-current="page"
             >Home</a
           >
         </li>
-        <li>
+
+        <li class="pt-2">
           <a
-            href="#"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
-            >About</a
+            routerLink="/team"
+            [ngClass]="{ 'text-blue-700': router.isActive('/team', true) }"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            >Team</a
           >
         </li>
-        <li>
+        <li class="pt-2">
           <a
-            href="#"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
-            >Services</a
+            routerLink="/product"
+            [ngClass]="{ 'text-blue-700': router.isActive('/product', true) }"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            >Product</a
           >
         </li>
-        <li>
+        <li class="pt-2">
           <a
-            href="#"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
-            >Pricing</a
+            routerLink="/shop/new"
+            [ngClass]="{ 'text-blue-700': router.isActive('/shop/new', true) }"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            >New Shop</a
           >
         </li>
-        <li>
+
+        <li class="pt-2">
           <a
-            href="#"
-            class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
-            >Contact</a
+            routerLink="/shop"
+            [ngClass]="{ 'text-blue-700': router.isActive('/shop', true) }"
+            class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+            >Shop</a
           >
+        </li>
+
+        <li class="relative mb-2">
+          <ng-template [ngIf]="!auth.is_loaded" [ngIfElse]="loded">
+            <div role="status w-10 h-10 ">
+              <svg
+                aria-hidden="true"
+                class="mr-2 w-8 h-8 text-gray-200 animate-spin fill-blue-600"
+                viewBox="0 0 100 101"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                  fill="currentFill"
+                />
+              </svg>
+              <span class="sr-only">Loading...</span>
+            </div>
+          </ng-template>
+          <ng-template #loded>
+            <ng-template [ngIf]="auth.is_logged_in" [ngIfElse]="login">
+              <img
+                id="avatarButton"
+                type="button"
+                routerLink="/profile"
+                data-dropdown-toggle="userDropdown"
+                data-dropdown-placement="bottom-start"
+                class="w-8 h-8 rounded-full userDropdown cursor-pointer g"
+                [src]="auth.site_user?.profile_photo"
+                alt="User "
+              />
+            </ng-template>
+            <ng-template #login>
+              <button
+                routerLink="/auth"
+                type="button"
+                class="text-white h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium text-sm px-5 py-2.5 text-center"
+              >
+                Login
+              </button>
+            </ng-template>
+          </ng-template>
+
+          <!-- Dropdown menu -->
         </li>
       </ul>
     </div>

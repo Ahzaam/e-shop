@@ -1,0 +1,36 @@
+<button
+  type="button"
+  *ngIf="!auth.site_user"
+  routerLink="/auth"
+  class="text-white my-5 bg-green-500 hover:bg-red-6 00 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-1.5 text-center mr-2 mb-2"
+>
+  Log In
+</button>
+<div class="container mx-auto text-center" *ngIf="auth.site_user">
+  <div
+    class="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl mx-auto sm:px-12"
+  >
+    <img
+      [src]="auth.site_user.profile_photo"
+      alt=""
+      class="w-32 h-32 mx-auto rounded-full aspect-square"
+    />
+    <div class="space-y-4 text-center divide-y divide-gray-700">
+      <div class="my-2 space-y-1">
+        <h2 class="text-xl font-semibold sm:text-2xl">
+          {{ auth.site_user.name }}
+        </h2>
+        <p class="text-xs">{{ auth.site_user.email }}</p>
+      </div>
+      <div class="w-full">
+        <button
+          type="button"
+          (click)="logout()"
+          class="text-white my-5 bg-red-500 hover:bg-red-6 00 w-full focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-1.5 text-center mr-2 mb-2"
+        >
+          Log Out
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

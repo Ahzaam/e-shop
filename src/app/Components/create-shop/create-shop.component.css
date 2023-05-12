@@ -1,0 +1,23 @@
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #2563eb;
+}
+.curve_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-bottom: 0;
+}
+
+.curve_bottom svg {
+  position: relative;
+  display: block;
+  width: calc(153% + 1.3px);
+  height: 104px;
+}
+
+.curve_bottom .shape-fill {
+  fill: #186df5;
+}

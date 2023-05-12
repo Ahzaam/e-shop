@@ -1,0 +1,411 @@
+<div>
+  <style>
+    .body-height {
+      min-height: 80vh;
+    }
+  </style>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup" label="Shop Name">
+      <div class="body-height flex items-center justify-center">
+        <div class="w-full text-center mt-3">
+          <div class="w-fit mx-auto">
+            <span class="md:text-3xl text-lg"
+              >What name are you going to give to your shop?</span
+            >
+            <div class="my-10">
+              <div class="text-left">
+                <label
+                  for="number"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                  >Name without space is recommended ( It makes it simple for
+                  the user to navigate to your store.   )</label
+                >
+                <input
+                  type="text"
+                  id="first_name"
+                  (keyup)="nameChange()"
+                  (change)="nameChange()"
+                  [(ngModel)]="shop.name"
+                  class="bg-gray-50 border w-full mx-auto outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                  placeholder="EX: OnlineShoppings OR online-shoppings"
+                  required
+                />
+                <p class="mt-2 text-sm text-red-600">
+                  <span class="font-medium">{{ name_error_message }}</span>
+                </p>
+              </div>
+              <div class="mt-4 text-left">
+                <label
+                  for="quote"
+                  class="block mb-2 text-sm font-medium text-gray-900"
+                  >Tagline ( Optional )</label
+                >
+                <input
+                  type="text"
+                  [(ngModel)]="shop.quote"
+                  id="quote"
+                  class="bg-gray-50 border w-full mx-auto outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                  placeholder="EX: A few clicks is all it takes."
+                  required
+                />
+              </div>
+              <div class="my-4 w-52 mx-auto">
+                <button
+                  type="submit"
+                  (click)="afterName(stepper)"
+                  class="text-white px-8 max-w-sm w-36 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+                >
+                  Next
+                </button>
+              </div>
+              <div class="md:max-w-lg max-w-sm mx-auto text-center">
+                <img src="/assets/images/shop2.jpg" alt="SHop" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Shop Category">
+      <div class="body-height text-center pt-5">
+        <span>What's the category of the shop?</span>
+        <div
+          class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 container mx-auto items-center mt-10"
+        >
+          <div
+            class="pt-10 max-w-sm cursor-pointer border-2 border-gray-100 hover:shadow-2xl transition-all w-full shadow-lg rounded-lg"
+            *ngFor="let type of shop_types"
+            matStepperNext
+            (click)="afterType(stepper, type.type)"
+            [ngClass]="{ 'border-blue-500 ': shop.type === type.type }"
+          >
+            <div class="">
+              <img [src]="type.image" class="h-36 mx-auto" alt="Type" />
+            </div>
+            <div class="text-center my-5">
+              <span class="text-2xl"> {{ type.type | titlecase }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="my-4 w-52 mx-auto">
+          <button
+            type="submit"
+            matStepperPrevious
+            class="text-white px-8 max-w-sm w-36 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+          >
+            Previous
+          </button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Logo and Image">
+      <div
+        class="body-height text-center flex items-center justify-center container mx-auto"
+      >
+        <div class="w-full">
+          <div class="text-center mt-5">
+            <label class="md:text-2xl text-lg" for=""
+              >Upload a Cover image</label
+            >
+            <div class="justify-center w-full col-span-2">
+              <div class="max-w-lg mx-auto mt-4">
+                <label
+                  for="dropzone-file"
+                  class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
+                >
+                  <div
+                    *ngIf="!cropped_banner.image"
+                    class="flex flex-col items-center justify-center pt-5 pb-6"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-10 h-10 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                      ></path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500">
+                      <span class="font-semibold">Click to upload a Image</span>
+                      or drag and drop
+                    </p>
+                    <p class="text-xs text-gray-500">
+                      SVG, PNG, JPG or GIF (MAX. 4MB)
+                    </p>
+                  </div>
+                  <div *ngIf="cropped_banner.image" class="w-full h-full">
+                    <img
+                      class="h-full w-full"
+                      [src]="cropped_banner.image"
+                      alt=""
+                    />
+                  </div>
+                  <input
+                    (change)="bannerChangeEvent($event)"
+                    id="dropzone-file"
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 md:text-2xl text-lg">
+            <span>Upload a Logo?</span>
+            <div
+              class="justify-center mx-auto w-36 h-36 rounded-full col-span-2"
+            >
+              <div class="max-w-lg mx-auto mt-4">
+                <label
+                  for="dropzone-file-logo"
+                  class="flex flex-col items-center justify-center w-36 h-36 rounded-full border-2 border-gray-300 border-dashed cursor-pointer bg-gray-50"
+                >
+                  <div
+                    *ngIf="!cropped_logo.image"
+                    class="flex flex-col items-center justify-center pt-5 pb-6"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-10 h-10 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div *ngIf="cropped_logo.image">
+                    <img
+                      class="w-36 h-36 rounded-full overflow-hidden"
+                      [src]="cropped_logo.image"
+                      alt=""
+                    />
+                  </div>
+                  <input
+                    id="dropzone-file-logo"
+                    (change)="logoChangeEvent($event)"
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="my-4 grid grid-cols-2 text-center gap-2 w-52 mx-auto">
+            <button
+              type="submit"
+              matStepperPrevious
+              class="text-white px-2 max-w-sm w-40 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+            >
+              Previous
+            </button>
+            <button
+              [disabled]="!(cropped_logo.image && cropped_banner.image)"
+              type="submit"
+              matStepperNext
+              class="text-white px-8 max-w-sm w-36 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Fill out your address">
+      <div class="container mx-auto md:px-10">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+          <div>
+            <label
+              for="address"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Address</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="shop.address"
+              id="address"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Dehiwala, Colombo, Sri Lanka"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="number"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Phone</label
+            >
+            <input
+              type="tel"
+              id="number"
+              [(ngModel)]="shop.phone_number"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="0765506609"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="city"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >City</label
+            >
+            <input
+              type="text"
+              id="city"
+              [(ngModel)]="shop.city"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Colombo"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="zip"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Zip</label
+            >
+            <input
+              type="string"
+              id="phone"
+              [(ngModel)]="shop.zip"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="0778888855"
+              pattern="[0-9]{10}"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="website"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Do you have any social media page for your shop? ( Optional
+              )</label
+            >
+            <input
+              type="url"
+              [(ngModel)]="shop.social_account"
+              id="website"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="http://instagram.com/glideceylon"
+            />
+          </div>
+          <div>
+            <label
+              for="visitors"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >NIC Card No.</label
+            >
+            <input
+              type="text"
+              id="nic"
+              [(ngModel)]="shop.nic"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="200011112222"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="zip"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Opening Time</label
+            >
+            <input
+              type="time"
+              id="opening-time"
+              [(ngModel)]="shop.opening_time"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="06:00"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="zip"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Closing Time</label
+            >
+            <input
+              type="time"
+              [(ngModel)]="shop.closing_time"
+              id="closing_time"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="18:00"
+              required
+            />
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step label="Complete">
+      <div class="container max-w-3xl mx-auto md:px-10">
+        <div class="">
+          <img class="w-full h-fit" [src]="cropped_banner.image" alt="" />
+        </div>
+        <div class="grid grid-cols-8 py-10">
+          <div class="">
+            <img
+              class="rounded-full w-20 h-20"
+              [src]="cropped_logo.image"
+              alt="Image"
+            />
+          </div>
+          <div class="col-span-7 py-4 pl-3">
+            <span class="text-lg font-bold">{{ shop.name }}</span>
+            <div>
+              <span class="text-base">{{ shop.address }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full bg-gray-200 rounded-full h-1.5 mb-4">
+          <div
+            class="bg-blue-600 h-1.5 rounded-full"
+            [style]="{
+              width: banner_comp
+                ? storage.percentage / 2 + 50 + '%'
+                : storage.percentage / 2 + '%'
+            }"
+          ></div>
+        </div>
+        <div class="grid grid-cols-2">
+          <div class="text-right">
+            <button
+              type="submit"
+              matStepperPrevious
+              class="text-white px-3 max-w-sm w-40 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+            >
+              Previous
+            </button>
+          </div>
+          <div class="text-left mx-2">
+            <button
+              type="submit"
+              (click)="saveShop()"
+              class="text-white px-3 max-w-sm w-40 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-400 font-medium rounded-full text-sm sm:w-auto py-2.5 text-center"
+            >
+              Create Shop
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
